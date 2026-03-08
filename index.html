@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perception Check — Challenge Your Political Assumptions</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>★</text></svg>">
+</head>
+<body>
+
+  <!-- ============================================================
+       PAGE: DASHBOARD / LANDING
+       ============================================================ -->
+  <div class="page active" id="dashboard">
+    <div class="dashboard">
+      <div class="dashboard-bg">
+        <div class="grid-pattern"></div>
+        <!-- Stars field -->
+        <div class="stars-field">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span>
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span>
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span>
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        </div>
+        <!-- Flag-inspired horizontal stripes -->
+        <div class="stripe-accents">
+          <div class="stripe"></div><div class="stripe"></div>
+          <div class="stripe"></div><div class="stripe"></div>
+          <div class="stripe"></div><div class="stripe"></div>
+          <div class="stripe"></div><div class="stripe"></div>
+        </div>
+        <!-- Capitol dome silhouette -->
+        <svg class="capitol-silhouette" viewBox="0 0 800 200" fill="currentColor" color="var(--civic-ivory)">
+          <path d="M0,200 L100,200 L100,160 L150,160 L150,140 L200,140 L200,130 L250,130 L280,80 L320,60 L350,40 L370,25 L380,15 L390,10 L400,5 L410,10 L420,15 L430,25 L450,40 L480,60 L520,80 L550,130 L600,130 L600,140 L650,140 L650,160 L700,160 L700,200 L800,200 L800,200 L0,200 Z"/>
+        </svg>
+      </div>
+      <div class="dashboard-content">
+        <div class="dashboard-watermark">We the People</div>
+        <p class="dashboard-eyebrow">A data literacy experiment</p>
+        <h1 class="dashboard-title">Perception<br><em>Check</em></h1>
+        <div class="title-divider">
+          <span class="line"></span>
+          <span class="star-icon">★</span>
+          <span class="line"></span>
+        </div>
+        <p class="dashboard-subtitle">
+          How well do you actually understand the data behind American politics? 
+          Five questions. Real data. Prepare to have your assumptions challenged.
+        </p>
+        <div class="dashboard-meta">
+          <div class="meta-item">
+            <span class="meta-value">5</span>
+            <span class="meta-label">Questions</span>
+          </div>
+          <div class="meta-divider"></div>
+          <div class="meta-item">
+            <span class="meta-value">~3</span>
+            <span class="meta-label">Minutes</span>
+          </div>
+          <div class="meta-divider"></div>
+          <div class="meta-item">
+            <span class="meta-value">0</span>
+            <span class="meta-label">Googling</span>
+          </div>
+        </div>
+        <button class="btn-start" id="btn-start">
+          Begin the quiz <span class="arrow">→</span>
+        </button>
+        <div class="civic-footer">
+          <span class="footer-star">★</span> Informed citizens make better decisions <span class="footer-star">★</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ============================================================
+       PAGE: QUESTION 1
+       ============================================================ -->
+  <div class="page" id="q1">
+    <nav class="topbar">
+      <div class="topbar-logo">
+        Perception <em>Check</em> <span class="topbar-star">★</span> <span class="accent-dot"></span>
+      </div>
+      <div class="topbar-progress">
+        <div class="progress-dots">
+          <div class="progress-dot active"></div>
+          <div class="progress-dot"></div>
+          <div class="progress-dot"></div>
+          <div class="progress-dot"></div>
+          <div class="progress-dot"></div>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" style="width: 0%"></div>
+        </div>
+        <span class="progress-label">Q1 / 5</span>
+      </div>
+    </nav>
+    <div class="question-page">
+      <div class="side-decoration left"></div>
+      <div class="side-decoration right"></div>
+      <div class="question-body">
+        <span class="question-number">Question 01</span>
+        <h2 class="question-text">What percentage of Americans believe the economy is the most important issue facing the country?</h2>
+        <p class="question-context">Based on recent Gallup polling data</p>
+        <div class="options-grid">
+          <button class="option-btn">
+            <span class="option-marker">A</span>
+            <span class="option-value">25%</span>
+          </button>
+          <button class="option-btn">
+            <span class="option-marker">B</span>
+            <span class="option-value">40%</span>
+          </button>
+          <button class="option-btn">
+            <span class="option-marker">C</span>
+            <span class="option-value">55%</span>
+          </button>
+          <button class="option-btn">
+            <span class="option-marker">D</span>
+            <span class="option-value">70%</span>
+          </button>
+        </div>
+      </div>
+      <div class="action-bar">
+        <button class="btn-submit">Submit Answer</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ============================================================
+       PAGE: QUESTION 1 — ANSWER
+       ============================================================ -->
+  <div class="page" id="q1a">
+    <nav class="topbar">
+      <div class="topbar-logo">
+        Perception <em>Check</em> <span class="topbar-star">★</span> <span class="accent-dot"></span>
+      </div>
+      <div class="topbar-progress">
+        <div class="progress-dots">
+          <div class="progress-dot active"></div>
+          <div class="progress-dot"></div>
+          <div class="progress-dot"></div>
+          <div class="progress-dot"></div>
+          <div class="progress-dot"></div>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" style="width: 10%"></div>
+        </div>
+        <span class="progress-label">Q1 / 5</span>
+      </div>
+    </nav>
+    <div class="answer-page">
+      <div class="answer-body">
+        <div class="answer-result-badge correct">
+          <span class="badge-icon">✓</span>
+          <span class="badge-text">Correct</span>
+        </div>
+        <h2 class="answer-heading">The economy dominates public concern at <span class="highlight">40%</span></h2>
+        <p class="answer-explanation">
+          While many assume social issues or foreign policy dominate, the economy has consistently been the top concern for Americans since 2022, though the exact percentage surprises most people.
+        </p>
+        <div class="answer-comparison">
+          <div class="comparison-card your-answer">
+            <span class="comparison-label">Your Answer</span>
+            <span class="comparison-value">—</span>
+          </div>
+          <div class="comparison-card correct-answer">
+            <span class="comparison-label">Correct Answer</span>
+            <span class="comparison-value">40%</span>
+          </div>
+        </div>
+        <div class="chart-container">
+          <div class="chart-header">
+            <div>
+              <div class="chart-title">Most Important Problem Facing the U.S.</div>
+              <div class="chart-subtitle">Share of respondents, 2020–2025</div>
+            </div>
+            <div class="chart-legend">
+              <div class="legend-item"><span class="legend-dot" style="background: var(--accent)"></span> Economy</div>
+              <div class="legend-item"><span class="legend-dot" style="background: #5B8DEF"></span> Immigration</div>
+              <div class="legend-item"><span class="legend-dot" style="background: #A78BFA"></span> Healthcare</div>
+            </div>
+          </div>
+          <div class="chart-placeholder bars">
+            <!-- Y-axis -->
+            <div class="chart-y-axis">
+              <span class="y-label">50%</span>
+              <span class="y-label">40%</span>
+              <span class="y-label">30%</span>
+              <span class="y-label">20%</span>
+              <span class="y-label">10%</span>
+              <span class="y-label">0</span>
+            </div>
+            <!-- Grid lines -->
+            <div class="chart-grid">
+              <div class="grid-line" style="top: 0%"></div>
+              <div class="grid-line" style="top: 20%"></div>
+              <div class="grid-line" style="top: 40%"></div>
+              <div class="grid-line" style="top: 60%"></div>
+              <div class="grid-line" style="top: 80%"></div>
+            </div>
+            <!-- Bars grouped by year -->
+            <div class="chart-bar" style="height: 45%; background: var(--accent); animation: fadeUp 0.5s ease 0.5s both;"><span class="chart-bar-label">2020</span></div>
+            <div class="chart-bar" style="height: 30%; background: #5B8DEF; animation: fadeUp 0.5s ease 0.55s both;"></div>
+            <div class="chart-bar" style="height: 22%; background: #A78BFA; animation: fadeUp 0.5s ease 0.6s both;"></div>
+            <div style="width: 12px"></div>
+            <div class="chart-bar" style="height: 52%; background: var(--accent); animation: fadeUp 0.5s ease 0.65s both;"><span class="chart-bar-label">2021</span></div>
+            <div class="chart-bar" style="height: 18%; background: #5B8DEF; animation: fadeUp 0.5s ease 0.7s both;"></div>
+            <div class="chart-bar" style="height: 25%; background: #A78BFA; animation: fadeUp 0.5s ease 0.75s both;"></div>
+            <div style="width: 12px"></div>
+            <div class="chart-bar" style="height: 65%; background: var(--accent); animation: fadeUp 0.5s ease 0.8s both;"><span class="chart-bar-label">2022</span></div>
+            <div class="chart-bar" style="height: 22%; background: #5B8DEF; animation: fadeUp 0.5s ease 0.85s both;"></div>
+            <div class="chart-bar" style="height: 15%; background: #A78BFA; animation: fadeUp 0.5s ease 0.9s both;"></div>
+            <div style="width: 12px"></div>
+            <div class="chart-bar" style="height: 58%; background: var(--accent); animation: fadeUp 0.5s ease 0.95s both;"><span class="chart-bar-label">2023</span></div>
+            <div class="chart-bar" style="height: 35%; background: #5B8DEF; animation: fadeUp 0.5s ease 1s both;"></div>
+            <div class="chart-bar" style="height: 12%; background: #A78BFA; animation: fadeUp 0.5s ease 1.05s both;"></div>
+            <div style="width: 12px"></div>
+            <div class="chart-bar" style="height: 72%; background: var(--accent); animation: fadeUp 0.5s ease 1.1s both;"><span class="chart-bar-label">2024</span></div>
+            <div class="chart-bar" style="height: 42%; background: #5B8DEF; animation: fadeUp 0.5s ease 1.15s both;"></div>
+            <div class="chart-bar" style="height: 10%; background: #A78BFA; animation: fadeUp 0.5s ease 1.2s both;"></div>
+            <div style="width: 12px"></div>
+            <div class="chart-bar" style="height: 80%; background: var(--accent); animation: fadeUp 0.5s ease 1.25s both;"><span class="chart-bar-label">2025</span></div>
+            <div class="chart-bar" style="height: 38%; background: #5B8DEF; animation: fadeUp 0.5s ease 1.3s both;"></div>
+            <div class="chart-bar" style="height: 14%; background: #A78BFA; animation: fadeUp 0.5s ease 1.35s both;"></div>
+          </div>
+          <div class="chart-source">Gallup Monthly Poll, January 2025</div>
+        </div>
+        <div class="action-bar">
+          <button class="btn-submit enabled btn-next">Next Question <span style="margin-left:4px">→</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ============================================================
+       PAGE: QUESTION 2
+       ============================================================ -->
+  <div class="page" id="q2">
+    <nav class="topbar">
+      <div class="topbar-logo">
+        Perception <em>Check</em> <span class="topbar-star">★</span> <span class="accent-dot"></span>
+      </div>
+      <div class="topbar-progress">
+        <div class="progress-dots">
+          <div class="progress-dot completed"></div>
+          <div class="progress-dot active"></div>
+          <div class="progress-dot"></div>
+          <div class="progress-dot"></div>
+          <div class="progress-dot"></div>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" style="width: 20%"></div>
+        </div>
+        <span class="progress-label">Q2 / 5</span>
+      </div>
+    </nav>
+    <div class="question-page">
+      <div class="side-decoration left"></div>
+      <div class="side-decoration right"></div>
+      <div class="question-body">
+        <span class="question-number">Question 02</span>
+        <h2 class="question-text">What percentage of the federal budget goes to foreign aid?</h2>
+        <p class="question-context">Estimate the share of total U.S. federal spending</p>
+        <div class="slider-container">
+          <div class="slider-labels">
+            <span class="slider-label">0%</span>
+            <span class="slider-label">30%</span>
+          </div>
+          <input type="range" class="slider-input" min="0" max="30" step="1" value="0">
+          <div class="slider-value-display">0%</div>
+        </div>
+      </div>
+      <div class="action-bar">
+        <button class="btn-submit">Submit Answer</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ============================================================
+       PAGE: QUESTION 2 — ANSWER
+       ============================================================ -->
+  <div class="page" id="q2a">
+    <nav class="topbar">
+      <div class="topbar-logo">
+        Perception <em>Check</em> <span class="topbar-star">★</span> <span class="accent-dot"></span>
+      </div>
+      <div class="topbar-progress">
+        <div class="progress-dots">
+          <div class="progress-dot completed"></div>
+          <div class="progress-dot active"></div>
+          <div class="progress-dot"></div>
+          <div class="progress-dot"></div>
+          <div class="progress-dot"></div>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" style="width: 30%"></div>
+        </div>
+        <span class="progress-label">Q2 / 5</span>
+      </div>
+    </nav>
+    <div class="answer-page">
+      <div class="answer-body">
+        <div class="answer-result-badge correct">
+          <span class="badge-icon">✓</span>
+          <span class="badge-text">Correct</span>
+        </div>
+        <h2 class="answer-heading">Foreign aid is just <span class="highlight">less than 1%</span> of the federal budget</h2>
+        <p class="answer-explanation">
+          Americans consistently overestimate foreign aid spending. The average guess is around 25% — yet the real figure is under 1%. Defense, Social Security, and Medicare dwarf foreign aid many times over.
+        </p>
+        <div class="answer-comparison">
+          <div class="comparison-card your-answer">
+            <span class="comparison-label">Your Estimate</span>
+            <span class="comparison-value">—</span>
+          </div>
+          <div class="comparison-card correct-answer">
+            <span class="comparison-label">Actual Answer</span>
+            <span class="comparison-value">~1%</span>
+          </div>
+        </div>
+        <div class="chart-container">
+          <div class="chart-header">
+            <div>
+              <div class="chart-title">Federal Budget Allocation Breakdown</div>
+              <div class="chart-subtitle">Share of total federal spending, FY 2024</div>
+            </div>
+            <div class="chart-legend">
+              <div class="legend-item"><span class="legend-dot" style="background: #5B8DEF"></span> Social Security</div>
+              <div class="legend-item"><span class="legend-dot" style="background: var(--accent)"></span> Defense</div>
+              <div class="legend-item"><span class="legend-dot" style="background: #A78BFA"></span> Medicare</div>
+            </div>
+          </div>
+          <div class="chart-placeholder bars">
+            <div class="chart-y-axis">
+              <span class="y-label">25%</span>
+              <span class="y-label">20%</span>
+              <span class="y-label">15%</span>
+              <span class="y-label">10%</span>
+              <span class="y-label">5%</span>
+              <span class="y-label">0</span>
+            </div>
+            <div class="chart-grid">
+              <div class="grid-line" style="top: 0%"></div>
+              <div class="grid-line" style="top: 20%"></div>
+              <div class="grid-line" style="top: 40%"></div>
+              <div class="grid-line" style="top: 60%"></div>
+              <div class="grid-line" style="top: 80%"></div>
+            </div>
+            <div class="chart-bar" style="height: 88%; background: #5B8DEF; animation: fadeUp 0.5s ease 0.5s both;"><span class="chart-bar-label">Soc. Sec.</span></div>
+            <div class="chart-bar" style="height: 52%; background: var(--accent); animation: fadeUp 0.5s ease 0.6s both;"><span class="chart-bar-label">Defense</span></div>
+            <div class="chart-bar" style="height: 56%; background: #A78BFA; animation: fadeUp 0.5s ease 0.7s both;"><span class="chart-bar-label">Medicare</span></div>
+            <div class="chart-bar" style="height: 44%; background: #3AE88C; animation: fadeUp 0.5s ease 0.8s both;"><span class="chart-bar-label">Health</span></div>
+            <div class="chart-bar" style="height: 40%; background: #F0C246; animation: fadeUp 0.5s ease 0.9s both;"><span class="chart-bar-label">Net Int.</span></div>
+            <div class="chart-bar" style="height: 24%; background: #60A5FA; animation: fadeUp 0.5s ease 1.0s both;"><span class="chart-bar-label">Income Sec.</span></div>
+            <div class="chart-bar" style="height: 20%; background: #FB7185; animation: fadeUp 0.5s ease 1.1s both;"><span class="chart-bar-label">Veterans</span></div>
+            <div class="chart-bar" style="height: 16%; background: #C084FC; animation: fadeUp 0.5s ease 1.2s both;"><span class="chart-bar-label">Education</span></div>
+            <div class="chart-bar" style="height: 12%; background: #67E8F9; animation: fadeUp 0.5s ease 1.3s both;"><span class="chart-bar-label">Transport.</span></div>
+            <div class="chart-bar" style="height: 4%; background: #FBBF24; border: 2px solid var(--accent); animation: fadeUp 0.5s ease 1.4s both;"><span class="chart-bar-label" style="color: var(--accent); font-weight: 600;">Foreign Aid</span></div>
+          </div>
+          <div class="chart-source">Congressional Budget Office, FY 2024 Report</div>
+        </div>
+        <div class="action-bar">
+          <button class="btn-submit enabled btn-next">Next Question <span style="margin-left:4px">→</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ============================================================
+       PAGE: QUESTION 3
+       ============================================================ -->
+  <div class="page" id="q3">
+    <nav class="topbar">
+      <div class="topbar-logo">
+        Perception <em>Check</em> <span class="topbar-star">★</span> <span class="accent-dot"></span>
+      </div>
+      <div class="topbar-progress">
+        <div class="progress-dots">
+          <div class="progress-dot completed"></div>
+          <div class="progress-dot completed"></div>
+          <div class="progress-dot active"></div>
+          <div class="progress-dot"></div>
+          <div class="progress-dot"></div>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" style="width: 40%"></div>
+        </div>
+        <span class="progress-label">Q3 / 5</span>
+      </div>
+    </nav>
+    <div class="question-page">
+      <div class="side-decoration left"></div>
+      <div class="side-decoration right"></div>
+      <div class="question-body">
+        <span class="question-number">Question 03</span>
+        <h2 class="question-text">Which party's voters are more likely to say they have "a lot" of trust in the media?</h2>
+        <p class="question-context">Think about media trust across political lines</p>
+        <div class="options-grid">
+          <button class="option-btn">
+            <span class="option-marker">A</span>
+            <span class="option-value">Democrats</span>
+          </button>
+          <button class="option-btn">
+            <span class="option-marker">B</span>
+            <span class="option-value">Republicans</span>
+          </button>
+          <button class="option-btn">
+            <span class="option-marker">C</span>
+            <span class="option-value">Independents</span>
+          </button>
+          <button class="option-btn">
+            <span class="option-marker">D</span>
+            <span class="option-value">Equal across parties</span>
+          </button>
+        </div>
+      </div>
+      <div class="action-bar">
+        <button class="btn-submit">Submit Answer</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ============================================================
+       PAGE: QUESTION 3 — ANSWER
+       ============================================================ -->
+  <div class="page" id="q3a">
+    <nav class="topbar">
+      <div class="topbar-logo">
+        Perception <em>Check</em> <span class="topbar-star">★</span> <span class="accent-dot"></span>
+      </div>
+      <div class="topbar-progress">
+        <div class="progress-dots">
+          <div class="progress-dot completed"></div>
+          <div class="progress-dot completed"></div>
+          <div class="progress-dot active"></div>
+          <div class="progress-dot"></div>
+          <div class="progress-dot"></div>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" style="width: 50%"></div>
+        </div>
+        <span class="progress-label">Q3 / 5</span>
+      </div>
+    </nav>
+    <div class="answer-page">
+      <div class="answer-body">
+        <div class="answer-result-badge correct">
+          <span class="badge-icon">✓</span>
+          <span class="badge-text">Correct</span>
+        </div>
+        <h2 class="answer-heading"><span class="highlight">Democrats</span> trust media far more than other groups</h2>
+        <p class="answer-explanation">
+          The partisan media trust gap has widened dramatically. While 54% of Democrats report trusting mass media, only 11% of Republicans say the same — the largest gap ever recorded.
+        </p>
+        <div class="answer-comparison">
+          <div class="comparison-card your-answer">
+            <span class="comparison-label">Your Answer</span>
+            <span class="comparison-value">—</span>
+          </div>
+          <div class="comparison-card correct-answer">
+            <span class="comparison-label">Correct Answer</span>
+            <span class="comparison-value">Democrats</span>
+          </div>
+        </div>
+        <div class="chart-container">
+          <div class="chart-header">
+            <div>
+              <div class="chart-title">Trust in Mass Media by Party Affiliation</div>
+              <div class="chart-subtitle">"Great deal" or "fair amount" of trust, 2000–2025</div>
+            </div>
+            <div class="chart-legend">
+              <div class="legend-item"><span class="legend-dot" style="background: #5B8DEF"></span> Democrats</div>
+              <div class="legend-item"><span class="legend-dot" style="background: var(--accent)"></span> Republicans</div>
+              <div class="legend-item"><span class="legend-dot" style="background: #A78BFA"></span> Independents</div>
+            </div>
+          </div>
+          <div class="chart-placeholder line-chart">
+            <svg class="chart-line-svg" viewBox="0 0 600 250" preserveAspectRatio="none">
+              <!-- Grid lines -->
+              <line x1="0" y1="50" x2="600" y2="50" stroke="var(--border-subtle)" stroke-width="0.5"/>
+              <line x1="0" y1="100" x2="600" y2="100" stroke="var(--border-subtle)" stroke-width="0.5"/>
+              <line x1="0" y1="150" x2="600" y2="150" stroke="var(--border-subtle)" stroke-width="0.5"/>
+              <line x1="0" y1="200" x2="600" y2="200" stroke="var(--border-subtle)" stroke-width="0.5"/>
+              
+              <!-- Democrats line (higher trust) -->
+              <polyline fill="none" stroke="#5B8DEF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                points="0,80 60,85 120,75 180,90 240,70 300,95 360,65 420,75 480,60 540,55 600,50"
+                style="filter: drop-shadow(0 0 6px rgba(91,141,239,0.3))"/>
+              
+              <!-- Independents line (middle) -->
+              <polyline fill="none" stroke="#A78BFA" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                points="0,100 60,110 120,105 180,120 240,130 300,140 360,135 420,145 480,150 540,155 600,160"/>
+              
+              <!-- Republicans line (lower trust, declining) -->
+              <polyline fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                points="0,110 60,120 120,130 180,140 240,155 300,160 360,175 420,185 480,195 540,200 600,210"
+                style="filter: drop-shadow(0 0 6px rgba(232,93,58,0.3))"/>
+              
+              <!-- Y-axis labels -->
+              <text x="4" y="48" fill="var(--text-muted)" font-size="10" font-family="var(--font-mono)">80%</text>
+              <text x="4" y="98" fill="var(--text-muted)" font-size="10" font-family="var(--font-mono)">60%</text>
+              <text x="4" y="148" fill="var(--text-muted)" font-size="10" font-family="var(--font-mono)">40%</text>
+              <text x="4" y="198" fill="var(--text-muted)" font-size="10" font-family="var(--font-mono)">20%</text>
+              
+              <!-- X-axis labels -->
+              <text x="0" y="240" fill="var(--text-muted)" font-size="10" font-family="var(--font-mono)">2000</text>
+              <text x="120" y="240" fill="var(--text-muted)" font-size="10" font-family="var(--font-mono)">2005</text>
+              <text x="240" y="240" fill="var(--text-muted)" font-size="10" font-family="var(--font-mono)">2010</text>
+              <text x="360" y="240" fill="var(--text-muted)" font-size="10" font-family="var(--font-mono)">2015</text>
+              <text x="480" y="240" fill="var(--text-muted)" font-size="10" font-family="var(--font-mono)">2020</text>
+              <text x="570" y="240" fill="var(--text-muted)" font-size="10" font-family="var(--font-mono)">2025</text>
+              
+              <!-- End-point labels -->
+              <text x="605" y="53" fill="#5B8DEF" font-size="11" font-weight="600" font-family="var(--font-mono)">54%</text>
+              <text x="605" y="163" fill="#A78BFA" font-size="11" font-weight="600" font-family="var(--font-mono)">27%</text>
+              <text x="605" y="213" fill="var(--accent)" font-size="11" font-weight="600" font-family="var(--font-mono)">11%</text>
+            </svg>
+          </div>
+          <div class="chart-source">Gallup Media Trust Survey, September 2024</div>
+        </div>
+        <div class="action-bar">
+          <button class="btn-submit enabled btn-next">Next Question <span style="margin-left:4px">→</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ============================================================
+       PAGE: QUESTION 4
+       ============================================================ -->
+  <div class="page" id="q4">
+    <nav class="topbar">
+      <div class="topbar-logo">
+        Perception <em>Check</em> <span class="topbar-star">★</span> <span class="accent-dot"></span>
+      </div>
+      <div class="topbar-progress">
+        <div class="progress-dots">
+          <div class="progress-dot completed"></div>
+          <div class="progress-dot completed"></div>
+          <div class="progress-dot completed"></div>
+          <div class="progress-dot active"></div>
+          <div class="progress-dot"></div>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" style="width: 60%"></div>
+        </div>
+        <span class="progress-label">Q4 / 5</span>
+      </div>
+    </nav>
+    <div class="question-page">
+      <div class="side-decoration left"></div>
+      <div class="side-decoration right"></div>
+      <div class="question-body">
+        <span class="question-number">Question 04</span>
+        <h2 class="question-text">Since 2000, has the violent crime rate in the U.S. generally gone up, down, or stayed the same?</h2>
+        <p class="question-context">Consider the overall long-term trend</p>
+        <div class="options-grid">
+          <button class="option-btn">
+            <span class="option-marker">A</span>
+            <span class="option-value">Gone up significantly</span>
+          </button>
+          <button class="option-btn">
+            <span class="option-marker">B</span>
+            <span class="option-value">Stayed roughly the same</span>
+          </button>
+          <button class="option-btn">
+            <span class="option-marker">C</span>
+            <span class="option-value">Gone down significantly</span>
+          </button>
+          <button class="option-btn">
+            <span class="option-marker">D</span>
+            <span class="option-value">Fluctuated with no clear trend</span>
+          </button>
+        </div>
+      </div>
+      <div class="action-bar">
+        <button class="btn-submit">Submit Answer</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ============================================================
+       PAGE: QUESTION 4 — ANSWER
+       ============================================================ -->
+  <div class="page" id="q4a">
+    <nav class="topbar">
+      <div class="topbar-logo">
+        Perception <em>Check</em> <span class="topbar-star">★</span> <span class="accent-dot"></span>
+      </div>
+      <div class="topbar-progress">
+        <div class="progress-dots">
+          <div class="progress-dot completed"></div>
+          <div class="progress-dot completed"></div>
+          <div class="progress-dot completed"></div>
+          <div class="progress-dot active"></div>
+          <div class="progress-dot"></div>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" style="width: 70%"></div>
+        </div>
+        <span class="progress-label">Q4 / 5</span>
+      </div>
+    </nav>
+    <div class="answer-page">
+      <div class="answer-body">
+        <div class="answer-result-badge correct">
+          <span class="badge-icon">✓</span>
+          <span class="badge-text">Correct</span>
+        </div>
+        <h2 class="answer-heading">Violent crime has <span class="highlight">dropped significantly</span> since 2000</h2>
+        <p class="answer-explanation">
+          Despite widespread perception that crime is rising, the violent crime rate has fallen by nearly 50% since its peak. Most Americans believe crime is increasing — a striking gap between perception and reality.
+        </p>
+        <div class="answer-comparison">
+          <div class="comparison-card your-answer">
+            <span class="comparison-label">Your Answer</span>
+            <span class="comparison-value">—</span>
+          </div>
+          <div class="comparison-card correct-answer">
+            <span class="comparison-label">Correct Answer</span>
+            <span class="comparison-value">Gone down significantly</span>
+          </div>
+        </div>
+        <div class="chart-container">
+          <div class="chart-header">
+            <div>
+              <div class="chart-title">U.S. Violent Crime Rate per 100,000 People</div>
+              <div class="chart-subtitle">FBI Uniform Crime Report data, 2000–2024</div>
+            </div>
+            <div class="chart-legend">
+              <div class="legend-item"><span class="legend-dot" style="background: var(--accent)"></span> Violent Crime Rate</div>
+            </div>
+          </div>
+          <div class="chart-placeholder line-chart">
+            <svg class="chart-line-svg" viewBox="0 0 600 250" preserveAspectRatio="none">
+              <!-- Grid lines -->
+              <line x1="0" y1="50" x2="600" y2="50" stroke="var(--border-subtle)" stroke-width="0.5"/>
+              <line x1="0" y1="100" x2="600" y2="100" stroke="var(--border-subtle)" stroke-width="0.5"/>
+              <line x1="0" y1="150" x2="600" y2="150" stroke="var(--border-subtle)" stroke-width="0.5"/>
+              <line x1="0" y1="200" x2="600" y2="200" stroke="var(--border-subtle)" stroke-width="0.5"/>
+              
+              <!-- Area fill -->
+              <polygon fill="var(--accent-soft)" stroke="none"
+                points="0,60 50,65 100,75 150,85 200,95 250,100 300,110 350,115 400,120 450,100 500,130 550,145 600,160 600,220 0,220"/>
+              
+              <!-- Crime rate line (declining trend) -->
+              <polyline fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                points="0,60 50,65 100,75 150,85 200,95 250,100 300,110 350,115 400,120 450,100 500,130 550,145 600,160"
+                style="filter: drop-shadow(0 0 6px rgba(232,93,58,0.4))"/>
+              
+              <!-- Data points -->
+              <circle cx="0" cy="60" r="3" fill="var(--accent)"/>
+              <circle cx="100" cy="75" r="3" fill="var(--accent)"/>
+              <circle cx="200" cy="95" r="3" fill="var(--accent)"/>
+              <circle cx="300" cy="110" r="3" fill="var(--accent)"/>
+              <circle cx="400" cy="120" r="3" fill="var(--accent)"/>
+              <circle cx="450" cy="100" r="3" fill="var(--accent)"/>
+              <circle cx="500" cy="130" r="3" fill="var(--accent)"/>
+              <circle cx="600" cy="160" r="3" fill="var(--accent)"/>
+              
+              <!-- COVID spike annotation -->
+              <line x1="450" y1="100" x2="450" y2="80" stroke="var(--text-muted)" stroke-width="0.5" stroke-dasharray="3"/>
+              <text x="455" y="78" fill="var(--text-muted)" font-size="8" font-family="var(--font-mono)">COVID spike</text>
+              
+              <!-- Y-axis -->
+              <text x="4" y="48" fill="var(--text-muted)" font-size="10" font-family="var(--font-mono)">600</text>
+              <text x="4" y="98" fill="var(--text-muted)" font-size="10" font-family="var(--font-mono)">500</text>
+              <text x="4" y="148" fill="var(--text-muted)" font-size="10" font-family="var(--font-mono)">400</text>
+              <text x="4" y="198" fill="var(--text-muted)" font-size="10" font-family="var(--font-mono)">300</text>
+              
+              <!-- X-axis -->
+              <text x="0" y="240" fill="var(--text-muted)" font-size="10" font-family="var(--font-mono)">2000</text>
+              <text x="100" y="240" fill="var(--text-muted)" font-size="10" font-family="var(--font-mono)">2004</text>
+              <text x="200" y="240" fill="var(--text-muted)" font-size="10" font-family="var(--font-mono)">2008</text>
+              <text x="300" y="240" fill="var(--text-muted)" font-size="10" font-family="var(--font-mono)">2012</text>
+              <text x="400" y="240" fill="var(--text-muted)" font-size="10" font-family="var(--font-mono)">2016</text>
+              <text x="500" y="240" fill="var(--text-muted)" font-size="10" font-family="var(--font-mono)">2020</text>
+              <text x="570" y="240" fill="var(--text-muted)" font-size="10" font-family="var(--font-mono)">2024</text>
+              
+              <!-- Annotation: start and end values -->
+              <text x="0" y="55" fill="var(--accent)" font-size="11" font-weight="600" font-family="var(--font-mono)">507</text>
+              <text x="570" y="155" fill="var(--accent)" font-size="11" font-weight="600" font-family="var(--font-mono)">~364</text>
+            </svg>
+          </div>
+          <div class="chart-source">FBI UCR / Bureau of Justice Statistics, 2024</div>
+        </div>
+        <div class="action-bar">
+          <button class="btn-submit enabled btn-next">Next Question <span style="margin-left:4px">→</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ============================================================
+       PAGE: QUESTION 5
+       ============================================================ -->
+  <div class="page" id="q5">
+    <nav class="topbar">
+      <div class="topbar-logo">
+        Perception <em>Check</em> <span class="topbar-star">★</span> <span class="accent-dot"></span>
+      </div>
+      <div class="topbar-progress">
+        <div class="progress-dots">
+          <div class="progress-dot completed"></div>
+          <div class="progress-dot completed"></div>
+          <div class="progress-dot completed"></div>
+          <div class="progress-dot completed"></div>
+          <div class="progress-dot active"></div>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" style="width: 80%"></div>
+        </div>
+        <span class="progress-label">Q5 / 5</span>
+      </div>
+    </nav>
+    <div class="question-page">
+      <div class="side-decoration left"></div>
+      <div class="side-decoration right"></div>
+      <div class="question-body">
+        <span class="question-number">Question 05</span>
+        <h2 class="question-text">What share of immigrants in the U.S. are in the country legally?</h2>
+        <p class="question-context">Consider all immigrants, not just recent arrivals</p>
+        <div class="options-grid">
+          <button class="option-btn">
+            <span class="option-marker">A</span>
+            <span class="option-value">About 25%</span>
+          </button>
+          <button class="option-btn">
+            <span class="option-marker">B</span>
+            <span class="option-value">About 50%</span>
+          </button>
+          <button class="option-btn">
+            <span class="option-marker">C</span>
+            <span class="option-value">About 75%</span>
+          </button>
+          <button class="option-btn">
+            <span class="option-marker">D</span>
+            <span class="option-value">About 90%</span>
+          </button>
+        </div>
+      </div>
+      <div class="action-bar">
+        <button class="btn-submit">Submit Answer</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ============================================================
+       PAGE: QUESTION 5 — ANSWER
+       ============================================================ -->
+  <div class="page" id="q5a">
+    <nav class="topbar">
+      <div class="topbar-logo">
+        Perception <em>Check</em> <span class="topbar-star">★</span> <span class="accent-dot"></span>
+      </div>
+      <div class="topbar-progress">
+        <div class="progress-dots">
+          <div class="progress-dot completed"></div>
+          <div class="progress-dot completed"></div>
+          <div class="progress-dot completed"></div>
+          <div class="progress-dot completed"></div>
+          <div class="progress-dot active"></div>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" style="width: 90%"></div>
+        </div>
+        <span class="progress-label">Q5 / 5</span>
+      </div>
+    </nav>
+    <div class="answer-page">
+      <div class="answer-body">
+        <div class="answer-result-badge correct">
+          <span class="badge-icon">✓</span>
+          <span class="badge-text">Correct</span>
+        </div>
+        <h2 class="answer-heading">Roughly <span class="highlight">~77%</span> of immigrants are here legally</h2>
+        <p class="answer-explanation">
+          Public debate often focuses on unauthorized immigration, but the vast majority of the 46+ million immigrants in the U.S. hold legal status — as naturalized citizens, permanent residents, or visa holders.
+        </p>
+        <div class="answer-comparison">
+          <div class="comparison-card your-answer">
+            <span class="comparison-label">Your Answer</span>
+            <span class="comparison-value">—</span>
+          </div>
+          <div class="comparison-card correct-answer">
+            <span class="comparison-label">Correct Answer</span>
+            <span class="comparison-value">About 75%</span>
+          </div>
+        </div>
+        <div class="chart-container">
+          <div class="chart-header">
+            <div>
+              <div class="chart-title">U.S. Immigrant Population by Legal Status</div>
+              <div class="chart-subtitle">Estimated shares of total foreign-born population</div>
+            </div>
+          </div>
+          <div class="chart-placeholder donut" style="flex-direction: column; gap: var(--space-lg);">
+            <svg class="donut-ring" viewBox="0 0 200 200">
+              <!-- Background ring -->
+              <circle cx="100" cy="100" r="80" fill="none" stroke="var(--border)" stroke-width="20"/>
+              
+              <!-- Naturalized Citizens: 49% -->
+              <circle cx="100" cy="100" r="80" fill="none" stroke="#5B8DEF" stroke-width="20"
+                stroke-dasharray="246 257" stroke-dashoffset="0"
+                transform="rotate(-90 100 100)"
+                style="filter: drop-shadow(0 0 6px rgba(91,141,239,0.3))"/>
+              
+              <!-- Lawful Permanent Residents: 22% -->
+              <circle cx="100" cy="100" r="80" fill="none" stroke="#3AE88C" stroke-width="20"
+                stroke-dasharray="110.6 392.4" stroke-dashoffset="-246"
+                transform="rotate(-90 100 100)"/>
+              
+              <!-- Temporary Visas: 6% -->
+              <circle cx="100" cy="100" r="80" fill="none" stroke="#A78BFA" stroke-width="20"
+                stroke-dasharray="30.2 472.8" stroke-dashoffset="-356.6"
+                transform="rotate(-90 100 100)"/>
+              
+              <!-- Unauthorized: 23% -->
+              <circle cx="100" cy="100" r="80" fill="none" stroke="var(--accent)" stroke-width="20"
+                stroke-dasharray="115.7 387.3" stroke-dashoffset="-386.8"
+                transform="rotate(-90 100 100)"
+                style="filter: drop-shadow(0 0 6px rgba(232,93,58,0.3))"/>
+              
+              <!-- Center text -->
+              <text x="100" y="92" text-anchor="middle" fill="var(--text-primary)" font-family="var(--font-display)" font-size="28">77%</text>
+              <text x="100" y="114" text-anchor="middle" fill="var(--text-muted)" font-family="var(--font-mono)" font-size="9">LEGAL STATUS</text>
+            </svg>
+            <div style="display: flex; gap: var(--space-xl); justify-content: center; flex-wrap: wrap;">
+              <div class="legend-item"><span class="legend-dot" style="background: #5B8DEF"></span> Naturalized (49%)</div>
+              <div class="legend-item"><span class="legend-dot" style="background: #3AE88C"></span> Permanent Res. (22%)</div>
+              <div class="legend-item"><span class="legend-dot" style="background: #A78BFA"></span> Temp. Visa (6%)</div>
+              <div class="legend-item"><span class="legend-dot" style="background: var(--accent)"></span> Unauthorized (23%)</div>
+            </div>
+          </div>
+          <div class="chart-source">Migration Policy Institute / Census Bureau ACS, 2023</div>
+        </div>
+        <div class="action-bar">
+          <button class="btn-submit enabled btn-next">See All the Data <span style="margin-left:4px">→</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ============================================================
+       PAGE: DATA DASHBOARD — All Visualizations
+       ============================================================ -->
+  <div class="page" id="score">
+    <nav class="topbar">
+      <div class="topbar-logo">
+        Perception <em>Check</em> <span class="topbar-star">★</span> <span class="accent-dot"></span>
+      </div>
+      <div class="topbar-progress">
+        <div class="progress-dots">
+          <div class="progress-dot completed"></div>
+          <div class="progress-dot completed"></div>
+          <div class="progress-dot completed"></div>
+          <div class="progress-dot completed"></div>
+          <div class="progress-dot completed"></div>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" style="width: 100%"></div>
+        </div>
+        <span class="progress-label">Complete</span>
+      </div>
+    </nav>
+
+    <div class="dashboard-summary">
+      <div class="score-bg"></div>
+      <div class="score-stripes">
+        <div class="s"></div><div class="s"></div><div class="s"></div>
+        <div class="s"></div><div class="s"></div><div class="s"></div>
+      </div>
+
+      <div class="dashboard-summary-content">
+        <!-- Header -->
+        <div class="dash-header">
+          <p class="score-eyebrow">Quiz Complete</p>
+          <h1 class="dash-title">The Data Behind<br>the Headlines</h1>
+          <p class="dash-subtitle">
+            Here's everything at a glance — the five visualizations that reveal how perception and reality diverge in American politics. Explore the data you just tested yourself on.
+          </p>
+        </div>
+
+        <!-- Chart Grid -->
+        <div class="dash-grid">
+
+          <!-- Card 1: Economy -->
+          <div class="dash-card" style="animation-delay: 0.15s">
+            <div class="dash-card-header">
+              <span class="dash-card-number">01</span>
+              <span class="dash-card-tag" id="dash-tag-1">—</span>
+            </div>
+            <h3 class="dash-card-title">Economy as Top Concern</h3>
+            <p class="dash-card-insight">The economy dominates public concern at <strong>40%</strong> — often underestimated or overestimated depending on political priors.</p>
+            <div class="dash-chart-wrap">
+              <div class="chart-container">
+                <div class="chart-header">
+                  <div>
+                    <div class="chart-title">Most Important Problem Facing the U.S.</div>
+                    <div class="chart-subtitle">Share of respondents, 2020–2025</div>
+                  </div>
+                  <div class="chart-legend">
+                    <div class="legend-item"><span class="legend-dot" style="background: var(--accent)"></span> Economy</div>
+                    <div class="legend-item"><span class="legend-dot" style="background: #5B8DEF"></span> Immigration</div>
+                    <div class="legend-item"><span class="legend-dot" style="background: #A78BFA"></span> Healthcare</div>
+                  </div>
+                </div>
+                <div class="chart-placeholder bars">
+                  <div class="chart-y-axis">
+                    <span class="y-label">50%</span><span class="y-label">40%</span><span class="y-label">30%</span><span class="y-label">20%</span><span class="y-label">10%</span><span class="y-label">0</span>
+                  </div>
+                  <div class="chart-grid">
+                    <div class="grid-line" style="top: 0%"></div><div class="grid-line" style="top: 20%"></div><div class="grid-line" style="top: 40%"></div><div class="grid-line" style="top: 60%"></div><div class="grid-line" style="top: 80%"></div>
+                  </div>
+                  <div class="chart-bar" style="height: 45%; background: var(--accent);"><span class="chart-bar-label">2020</span></div>
+                  <div class="chart-bar" style="height: 30%; background: #5B8DEF;"></div>
+                  <div class="chart-bar" style="height: 22%; background: #A78BFA;"></div>
+                  <div style="width: 12px"></div>
+                  <div class="chart-bar" style="height: 52%; background: var(--accent);"><span class="chart-bar-label">2021</span></div>
+                  <div class="chart-bar" style="height: 18%; background: #5B8DEF;"></div>
+                  <div class="chart-bar" style="height: 25%; background: #A78BFA;"></div>
+                  <div style="width: 12px"></div>
+                  <div class="chart-bar" style="height: 65%; background: var(--accent);"><span class="chart-bar-label">2022</span></div>
+                  <div class="chart-bar" style="height: 22%; background: #5B8DEF;"></div>
+                  <div class="chart-bar" style="height: 15%; background: #A78BFA;"></div>
+                  <div style="width: 12px"></div>
+                  <div class="chart-bar" style="height: 58%; background: var(--accent);"><span class="chart-bar-label">2023</span></div>
+                  <div class="chart-bar" style="height: 35%; background: #5B8DEF;"></div>
+                  <div class="chart-bar" style="height: 12%; background: #A78BFA;"></div>
+                  <div style="width: 12px"></div>
+                  <div class="chart-bar" style="height: 72%; background: var(--accent);"><span class="chart-bar-label">2024</span></div>
+                  <div class="chart-bar" style="height: 42%; background: #5B8DEF;"></div>
+                  <div class="chart-bar" style="height: 10%; background: #A78BFA;"></div>
+                  <div style="width: 12px"></div>
+                  <div class="chart-bar" style="height: 80%; background: var(--accent);"><span class="chart-bar-label">2025</span></div>
+                  <div class="chart-bar" style="height: 38%; background: #5B8DEF;"></div>
+                  <div class="chart-bar" style="height: 14%; background: #A78BFA;"></div>
+                </div>
+                <div class="chart-source">Gallup Monthly Poll, January 2025</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2: Foreign Aid -->
+          <div class="dash-card" style="animation-delay: 0.25s">
+            <div class="dash-card-header">
+              <span class="dash-card-number">02</span>
+              <span class="dash-card-tag" id="dash-tag-2">—</span>
+            </div>
+            <h3 class="dash-card-title">Foreign Aid Budget Share</h3>
+            <p class="dash-card-insight">Foreign aid is just <strong>less than 1%</strong> of the federal budget — yet the average American guesses around 25%.</p>
+            <div class="dash-chart-wrap">
+              <div class="chart-container">
+                <div class="chart-header">
+                  <div>
+                    <div class="chart-title">Federal Budget Allocation Breakdown</div>
+                    <div class="chart-subtitle">Share of total federal spending, FY 2024</div>
+                  </div>
+                  <div class="chart-legend">
+                    <div class="legend-item"><span class="legend-dot" style="background: #5B8DEF"></span> Soc. Sec.</div>
+                    <div class="legend-item"><span class="legend-dot" style="background: var(--accent)"></span> Defense</div>
+                    <div class="legend-item"><span class="legend-dot" style="background: #A78BFA"></span> Medicare</div>
+                  </div>
+                </div>
+                <div class="chart-placeholder bars">
+                  <div class="chart-y-axis">
+                    <span class="y-label">25%</span><span class="y-label">20%</span><span class="y-label">15%</span><span class="y-label">10%</span><span class="y-label">5%</span><span class="y-label">0</span>
+                  </div>
+                  <div class="chart-grid">
+                    <div class="grid-line" style="top: 0%"></div><div class="grid-line" style="top: 20%"></div><div class="grid-line" style="top: 40%"></div><div class="grid-line" style="top: 60%"></div><div class="grid-line" style="top: 80%"></div>
+                  </div>
+                  <div class="chart-bar" style="height: 88%; background: #5B8DEF;"><span class="chart-bar-label">Soc. Sec.</span></div>
+                  <div class="chart-bar" style="height: 52%; background: var(--accent);"><span class="chart-bar-label">Defense</span></div>
+                  <div class="chart-bar" style="height: 56%; background: #A78BFA;"><span class="chart-bar-label">Medicare</span></div>
+                  <div class="chart-bar" style="height: 44%; background: #3AE88C;"><span class="chart-bar-label">Health</span></div>
+                  <div class="chart-bar" style="height: 40%; background: #F0C246;"><span class="chart-bar-label">Net Int.</span></div>
+                  <div class="chart-bar" style="height: 24%; background: #60A5FA;"><span class="chart-bar-label">Income Sec.</span></div>
+                  <div class="chart-bar" style="height: 20%; background: #FB7185;"><span class="chart-bar-label">Veterans</span></div>
+                  <div class="chart-bar" style="height: 16%; background: #C084FC;"><span class="chart-bar-label">Education</span></div>
+                  <div class="chart-bar" style="height: 12%; background: #67E8F9;"><span class="chart-bar-label">Transport.</span></div>
+                  <div class="chart-bar" style="height: 4%; background: #FBBF24; border: 2px solid var(--accent);"><span class="chart-bar-label" style="color: var(--accent); font-weight: 600;">Foreign Aid</span></div>
+                </div>
+                <div class="chart-source">Congressional Budget Office, FY 2024 Report</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3: Media Trust -->
+          <div class="dash-card dash-card-wide" style="animation-delay: 0.35s">
+            <div class="dash-card-header">
+              <span class="dash-card-number">03</span>
+              <span class="dash-card-tag" id="dash-tag-3">—</span>
+            </div>
+            <h3 class="dash-card-title">Media Trust by Party</h3>
+            <p class="dash-card-insight"><strong>Democrats</strong> trust media far more than other groups — 54% vs. just 11% of Republicans, the largest gap ever recorded.</p>
+            <div class="dash-chart-wrap">
+              <div class="chart-container">
+                <div class="chart-header">
+                  <div>
+                    <div class="chart-title">Trust in Mass Media by Party Affiliation</div>
+                    <div class="chart-subtitle">"Great deal" or "fair amount" of trust, 2000–2025</div>
+                  </div>
+                  <div class="chart-legend">
+                    <div class="legend-item"><span class="legend-dot" style="background: #5B8DEF"></span> Democrats</div>
+                    <div class="legend-item"><span class="legend-dot" style="background: var(--accent)"></span> Republicans</div>
+                    <div class="legend-item"><span class="legend-dot" style="background: #A78BFA"></span> Independents</div>
+                  </div>
+                </div>
+                <div class="chart-placeholder line-chart">
+                  <svg class="chart-line-svg" viewBox="0 0 600 250" preserveAspectRatio="none">
+                    <line x1="0" y1="50" x2="600" y2="50" stroke="var(--border-subtle)" stroke-width="0.5"/>
+                    <line x1="0" y1="100" x2="600" y2="100" stroke="var(--border-subtle)" stroke-width="0.5"/>
+                    <line x1="0" y1="150" x2="600" y2="150" stroke="var(--border-subtle)" stroke-width="0.5"/>
+                    <line x1="0" y1="200" x2="600" y2="200" stroke="var(--border-subtle)" stroke-width="0.5"/>
+                    <polyline fill="none" stroke="#5B8DEF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                      points="0,80 60,85 120,75 180,90 240,70 300,95 360,65 420,75 480,60 540,55 600,50"
+                      style="filter: drop-shadow(0 0 6px rgba(91,141,239,0.3))"/>
+                    <polyline fill="none" stroke="#A78BFA" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                      points="0,100 60,110 120,105 180,120 240,130 300,140 360,135 420,145 480,150 540,155 600,160"/>
+                    <polyline fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                      points="0,110 60,120 120,130 180,140 240,155 300,160 360,175 420,185 480,195 540,200 600,210"
+                      style="filter: drop-shadow(0 0 6px rgba(232,93,58,0.3))"/>
+                    <text x="4" y="48" fill="var(--text-muted)" font-size="10" font-family="var(--font-mono)">80%</text>
+                    <text x="4" y="98" fill="var(--text-muted)" font-size="10" font-family="var(--font-mono)">60%</text>
+                    <text x="4" y="148" fill="var(--text-muted)" font-size="10" font-family="var(--font-mono)">40%</text>
+                    <text x="4" y="198" fill="var(--text-muted)" font-size="10" font-family="var(--font-mono)">20%</text>
+                    <text x="0" y="240" fill="var(--text-muted)" font-size="10" font-family="var(--font-mono)">2000</text>
+                    <text x="120" y="240" fill="var(--text-muted)" font-size="10" font-family="var(--font-mono)">2005</text>
+                    <text x="240" y="240" fill="var(--text-muted)" font-size="10" font-family="var(--font-mono)">2010</text>
+                    <text x="360" y="240" fill="var(--text-muted)" font-size="10" font-family="var(--font-mono)">2015</text>
+                    <text x="480" y="240" fill="var(--text-muted)" font-size="10" font-family="var(--font-mono)">2020</text>
+                    <text x="570" y="240" fill="var(--text-muted)" font-size="10" font-family="var(--font-mono)">2025</text>
+                    <text x="605" y="53" fill="#5B8DEF" font-size="11" font-weight="600" font-family="var(--font-mono)">54%</text>
+                    <text x="605" y="163" fill="#A78BFA" font-size="11" font-weight="600" font-family="var(--font-mono)">27%</text>
+                    <text x="605" y="213" fill="var(--accent)" font-size="11" font-weight="600" font-family="var(--font-mono)">11%</text>
+                  </svg>
+                </div>
+                <div class="chart-source">Gallup Media Trust Survey, September 2024</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 4: Violent Crime -->
+          <div class="dash-card dash-card-wide" style="animation-delay: 0.45s">
+            <div class="dash-card-header">
+              <span class="dash-card-number">04</span>
+              <span class="dash-card-tag" id="dash-tag-4">—</span>
+            </div>
+            <h3 class="dash-card-title">Violent Crime Trend</h3>
+            <p class="dash-card-insight">Violent crime has <strong>dropped ~50%</strong> since 2000 — yet most Americans believe crime is increasing.</p>
+            <div class="dash-chart-wrap">
+              <div class="chart-container">
+                <div class="chart-header">
+                  <div>
+                    <div class="chart-title">U.S. Violent Crime Rate per 100,000 People</div>
+                    <div class="chart-subtitle">FBI Uniform Crime Report data, 2000–2024</div>
+                  </div>
+                  <div class="chart-legend">
+                    <div class="legend-item"><span class="legend-dot" style="background: var(--accent)"></span> Violent Crime Rate</div>
+                  </div>
+                </div>
+                <div class="chart-placeholder line-chart">
+                  <svg class="chart-line-svg" viewBox="0 0 600 250" preserveAspectRatio="none">
+                    <line x1="0" y1="50" x2="600" y2="50" stroke="var(--border-subtle)" stroke-width="0.5"/>
+                    <line x1="0" y1="100" x2="600" y2="100" stroke="var(--border-subtle)" stroke-width="0.5"/>
+                    <line x1="0" y1="150" x2="600" y2="150" stroke="var(--border-subtle)" stroke-width="0.5"/>
+                    <line x1="0" y1="200" x2="600" y2="200" stroke="var(--border-subtle)" stroke-width="0.5"/>
+                    <polygon fill="var(--accent-soft)" stroke="none"
+                      points="0,60 50,65 100,75 150,85 200,95 250,100 300,110 350,115 400,120 450,100 500,130 550,145 600,160 600,220 0,220"/>
+                    <polyline fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                      points="0,60 50,65 100,75 150,85 200,95 250,100 300,110 350,115 400,120 450,100 500,130 550,145 600,160"
+                      style="filter: drop-shadow(0 0 6px rgba(232,93,58,0.4))"/>
+                    <circle cx="0" cy="60" r="3" fill="var(--accent)"/>
+                    <circle cx="100" cy="75" r="3" fill="var(--accent)"/>
+                    <circle cx="200" cy="95" r="3" fill="var(--accent)"/>
+                    <circle cx="300" cy="110" r="3" fill="var(--accent)"/>
+                    <circle cx="400" cy="120" r="3" fill="var(--accent)"/>
+                    <circle cx="450" cy="100" r="3" fill="var(--accent)"/>
+                    <circle cx="500" cy="130" r="3" fill="var(--accent)"/>
+                    <circle cx="600" cy="160" r="3" fill="var(--accent)"/>
+                    <line x1="450" y1="100" x2="450" y2="80" stroke="var(--text-muted)" stroke-width="0.5" stroke-dasharray="3"/>
+                    <text x="455" y="78" fill="var(--text-muted)" font-size="8" font-family="var(--font-mono)">COVID spike</text>
+                    <text x="4" y="48" fill="var(--text-muted)" font-size="10" font-family="var(--font-mono)">600</text>
+                    <text x="4" y="98" fill="var(--text-muted)" font-size="10" font-family="var(--font-mono)">500</text>
+                    <text x="4" y="148" fill="var(--text-muted)" font-size="10" font-family="var(--font-mono)">400</text>
+                    <text x="4" y="198" fill="var(--text-muted)" font-size="10" font-family="var(--font-mono)">300</text>
+                    <text x="0" y="240" fill="var(--text-muted)" font-size="10" font-family="var(--font-mono)">2000</text>
+                    <text x="100" y="240" fill="var(--text-muted)" font-size="10" font-family="var(--font-mono)">2004</text>
+                    <text x="200" y="240" fill="var(--text-muted)" font-size="10" font-family="var(--font-mono)">2008</text>
+                    <text x="300" y="240" fill="var(--text-muted)" font-size="10" font-family="var(--font-mono)">2012</text>
+                    <text x="400" y="240" fill="var(--text-muted)" font-size="10" font-family="var(--font-mono)">2016</text>
+                    <text x="500" y="240" fill="var(--text-muted)" font-size="10" font-family="var(--font-mono)">2020</text>
+                    <text x="570" y="240" fill="var(--text-muted)" font-size="10" font-family="var(--font-mono)">2024</text>
+                    <text x="0" y="55" fill="var(--accent)" font-size="11" font-weight="600" font-family="var(--font-mono)">507</text>
+                    <text x="570" y="155" fill="var(--accent)" font-size="11" font-weight="600" font-family="var(--font-mono)">~364</text>
+                  </svg>
+                </div>
+                <div class="chart-source">FBI UCR / Bureau of Justice Statistics, 2024</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 5: Immigration -->
+          <div class="dash-card" style="animation-delay: 0.55s">
+            <div class="dash-card-header">
+              <span class="dash-card-number">05</span>
+              <span class="dash-card-tag" id="dash-tag-5">—</span>
+            </div>
+            <h3 class="dash-card-title">Legal Immigrant Share</h3>
+            <p class="dash-card-insight">Roughly <strong>~77%</strong> of immigrants are here legally — as naturalized citizens, permanent residents, or visa holders.</p>
+            <div class="dash-chart-wrap">
+              <div class="chart-container">
+                <div class="chart-header">
+                  <div>
+                    <div class="chart-title">U.S. Immigrant Population by Legal Status</div>
+                    <div class="chart-subtitle">Estimated shares of total foreign-born population</div>
+                  </div>
+                </div>
+                <div class="chart-placeholder donut" style="flex-direction: column; gap: var(--space-lg);">
+                  <svg class="donut-ring" viewBox="0 0 200 200">
+                    <circle cx="100" cy="100" r="80" fill="none" stroke="var(--border)" stroke-width="20"/>
+                    <circle cx="100" cy="100" r="80" fill="none" stroke="#5B8DEF" stroke-width="20"
+                      stroke-dasharray="246 257" stroke-dashoffset="0"
+                      transform="rotate(-90 100 100)"
+                      style="filter: drop-shadow(0 0 6px rgba(91,141,239,0.3))"/>
+                    <circle cx="100" cy="100" r="80" fill="none" stroke="#3AE88C" stroke-width="20"
+                      stroke-dasharray="110.6 392.4" stroke-dashoffset="-246"
+                      transform="rotate(-90 100 100)"/>
+                    <circle cx="100" cy="100" r="80" fill="none" stroke="#A78BFA" stroke-width="20"
+                      stroke-dasharray="30.2 472.8" stroke-dashoffset="-356.6"
+                      transform="rotate(-90 100 100)"/>
+                    <circle cx="100" cy="100" r="80" fill="none" stroke="var(--accent)" stroke-width="20"
+                      stroke-dasharray="115.7 387.3" stroke-dashoffset="-386.8"
+                      transform="rotate(-90 100 100)"
+                      style="filter: drop-shadow(0 0 6px rgba(232,93,58,0.3))"/>
+                    <text x="100" y="92" text-anchor="middle" fill="var(--text-primary)" font-family="var(--font-display)" font-size="28">77%</text>
+                    <text x="100" y="114" text-anchor="middle" fill="var(--text-muted)" font-family="var(--font-mono)" font-size="9">LEGAL STATUS</text>
+                  </svg>
+                  <div style="display: flex; gap: var(--space-xl); justify-content: center; flex-wrap: wrap;">
+                    <div class="legend-item"><span class="legend-dot" style="background: #5B8DEF"></span> Naturalized (49%)</div>
+                    <div class="legend-item"><span class="legend-dot" style="background: #3AE88C"></span> Perm. Res. (22%)</div>
+                    <div class="legend-item"><span class="legend-dot" style="background: #A78BFA"></span> Temp. Visa (6%)</div>
+                    <div class="legend-item"><span class="legend-dot" style="background: var(--accent)"></span> Unauthorized (23%)</div>
+                  </div>
+                </div>
+                <div class="chart-source">Migration Policy Institute / Census Bureau ACS, 2023</div>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /dash-grid -->
+
+        <!-- Footer -->
+        <div class="dash-footer">
+          <div class="score-actions">
+            <button class="btn-restart" id="btn-restart">
+              ↺ Take the Quiz Again
+            </button>
+            <button class="btn-share" onclick="navigator.clipboard.writeText('I just took Perception Check — a political data quiz that challenges assumptions with real data. Try it yourself!').then(() => this.textContent = 'Copied!')">
+              ↗ Share
+            </button>
+          </div>
+          <div class="civic-quote">
+            "An educated citizenry is a vital requisite for our survival as a free people."
+            <span class="quote-attr">— Often attributed to Thomas Jefferson</span>
+          </div>
+        </div>
+      </div><!-- /dashboard-summary-content -->
+    </div><!-- /dashboard-summary -->
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
