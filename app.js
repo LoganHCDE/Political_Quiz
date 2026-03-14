@@ -50,7 +50,7 @@ const QuizApp = (() => {
           { label: 'D', value: 'All equal' }
         ],
         correctIndex: 1,
-        answerHeading: '<span class="highlight">Republicans</span> want more space funding — and the gap is growing',
+        answerHeading: '<span class="highlight">Republicans</span> want more space funding — although recent data suggests Independents may be catching up',
         answerExplanation: 'Surprising but true: Republicans consistently say we spend "too little" on space exploration at higher rates than Democrats or Independents. The gap has widened notably since the 2010s — defying the assumption that science funding is a Democratic priority.',
         chartTitle: 'Support for More Space Exploration Funding Over Time',
         chartSubtitle: '% saying "too little" on space exploration spending, by party group',
@@ -60,7 +60,7 @@ const QuizApp = (() => {
       {
         id: 4,
         type: 'rank',
-        question: 'Rank these college majors from most to least conservative among GSS respondents',
+        question: 'Rank these college majors from most to least conservative among College Graduates',
         context: 'Conservative = slightly conservative + conservative + extremely conservative · #1 = most conservative, #4 = least',
         correctOrder: ['Marketing', 'Medicine', 'Computer Science', 'History'],
         answerHeading: '<span class="highlight">Marketing</span> majors are most conservative — History least',
@@ -105,6 +105,32 @@ const QuizApp = (() => {
   // — DOM References —
   const pages = {};
 
+  function getRankOrder(qNum) {
+    const listId = qNum === 4 ? 'rank-list-q4' : 'rank-list-q1';
+    const list = document.getElementById(listId);
+    if (!list) return null;
+    return [...list.querySelectorAll('.rank-list-item')].map(el => el.dataset.gen);
+  }
+
+  function canSubmitRankQuestion(qNum) {
+    const order = getRankOrder(qNum);
+    return Array.isArray(order) && order.length === 4;
+  }
+
+  function ensureRankSubmitEnabled(qNum) {
+    const submitId = qNum === 4 ? 'q4-submit' : 'q1-submit';
+    const submitBtn = document.getElementById(submitId);
+    if (!submitBtn) return;
+    if (canSubmitRankQuestion(qNum)) {
+      submitBtn.classList.add('enabled');
+    }
+  }
+
+  function syncActiveRankSubmitButton() {
+    if (currentPage === 'q1') ensureRankSubmitEnabled(1);
+    if (currentPage === 'q4') ensureRankSubmitEnabled(4);
+  }
+
   // — Initialize —
   function init() {
     document.querySelectorAll('.page').forEach(page => {
@@ -137,6 +163,7 @@ const QuizApp = (() => {
       score = 0;
       selectedAnswers = {};
       showPage('q1');
+      ensureRankSubmitEnabled(1);
     });
 
     // Option buttons (delegated)
@@ -180,17 +207,26 @@ const QuizApp = (() => {
 
     // Q1 rank submit
     document.getElementById('q1-submit')?.addEventListener('click', () => {
-      if (document.getElementById('q1-submit').classList.contains('enabled')) {
+      ensureRankSubmitEnabled(1);
+      if (canSubmitRankQuestion(1)) {
         submitAnswer(1);
       }
     });
 
     // Q4 rank submit
     document.getElementById('q4-submit')?.addEventListener('click', () => {
-      if (document.getElementById('q4-submit').classList.contains('enabled')) {
+      ensureRankSubmitEnabled(4);
+      if (canSubmitRankQuestion(4)) {
         submitAnswer(4);
       }
     });
+
+    // Keep rank submit buttons resilient after tab idle/background cycles.
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden) syncActiveRankSubmitButton();
+    });
+    window.addEventListener('focus', syncActiveRankSubmitButton);
+    setInterval(syncActiveRankSubmitButton, 2000);
 
     // Restart button
     document.getElementById('btn-restart')?.addEventListener('click', () => {
@@ -834,6 +870,12 @@ const QuizApp = (() => {
       if (pageId === 'q1a') {
         requestAnimationFrame(() => renderQ1Chart(q1ActiveView));
       }
+      if (pageId === 'q1') {
+        ensureRankSubmitEnabled(1);
+      }
+      if (pageId === 'q4') {
+        ensureRankSubmitEnabled(4);
+      }
       // Initialize Q2 education chart whenever q2a becomes visible
       if (pageId === 'q2a') {
         requestAnimationFrame(() => {
@@ -1154,8 +1196,14 @@ const QuizApp = (() => {
     document.getElementById('q1a-legend-label').textContent = cfg.legendLabel;
     document.getElementById('q1a-legend-dot').style.background = cfg.color;
 
-    // Sort bars descending so highest is first
-    const sorted = [...cfg.data].sort((a, b) => b.pct - a.pct);
+    // Keep bars in fixed chronological order across all ideology views
+    const chronologicalOrder = ['Gen Z', 'Millennial', 'Gen X', 'Boomers'];
+    const ordered = chronologicalOrder
+      .map((gen) => cfg.data.find((d) => d.gen === gen))
+      .filter(Boolean);
+    // Fallback: append any unexpected generation labels not in the fixed order
+    const extras = cfg.data.filter((d) => !chronologicalOrder.includes(d.gen));
+    const bars = [...ordered, ...extras];
 
     // Rebuild y-axis labels
     const yAxis = document.getElementById('q1a-y-axis');
@@ -1172,7 +1220,7 @@ const QuizApp = (() => {
     // Remove old bars (keep y-axis and grid)
     barsContainer.querySelectorAll('.chart-bar').forEach(b => b.remove());
 
-    sorted.forEach((d, i) => {
+    bars.forEach((d, i) => {
       const heightPct = (d.pct / cfg.yMax) * 100;
       const bar = document.createElement('div');
       bar.className = 'chart-bar';
