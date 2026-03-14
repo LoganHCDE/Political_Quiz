@@ -10,7 +10,7 @@ const QuizApp = (() => {
       {
         id: 1,
         type: 'rank',
-        question: 'Rank these generations from most to least liberal among male respondents in the GSS',
+        question: 'Rank these generations from most to least liberal among american men',
         context: 'Liberal = slightly liberal + liberal + extremely liberal; generations grouped by birth year',
         correctOrder: ['Millennial', 'Gen Z', 'Boomers', 'Gen X'],
         answerHeading: '<span class="highlight">Millennial men</span> rank highest — but Gen Z breaks the trend',
@@ -73,22 +73,20 @@ const QuizApp = (() => {
       },
       {
         id: 5,
-        type: 'multiple-choice',
-        question: 'Which party\'s voters are more likely to say they have "a lot" of trust in the media?',
-        context: 'Think about media trust across political lines',
-        options: [
-          { label: 'A', value: 'Democrats' },
-          { label: 'B', value: 'Republicans' },
-          { label: 'C', value: 'Independents' },
-          { label: 'D', value: 'Equal across parties' }
-        ],
-        correctIndex: 0,
-        answerHeading: '<span class="highlight">Democrats</span> trust media far more than other groups',
-        answerExplanation: 'The partisan media trust gap has widened dramatically. While 54% of Democrats report trusting mass media, only 11% of Republicans say the same — the largest gap ever recorded.',
-        chartTitle: 'Trust in Mass Media by Party Affiliation',
-        chartSubtitle: '"Great deal" or "fair amount" of trust, 2000–2025',
-        chartSource: 'Gallup Media Trust Survey, September 2024',
-        chartType: 'line'
+        type: 'gun-match',
+        question: 'Which type of gun is preferred by which ideology?',
+        context: 'Drag each group into the column that matches their preferred gun type',
+        correctPlacements: {
+          Liberal: 'Pistols',
+          Conservative: 'Shotguns',
+          Moderate: 'Shotguns'
+        },
+        answerHeading: 'Conservatives own <span class="highlight">more guns</span> — but liberals prefer pistols',
+        answerExplanation: 'While conservatives are more likely to own every type of gun, a higher percentage of liberals who own guns prefer pistols over shotguns or rifles. Conservatives and moderates both lean toward shotguns as their top firearm type.',
+        chartTitle: 'Gun Ownership by Ideology',
+        chartSubtitle: '% of ideology group who own each gun type',
+        chartSource: 'General Social Survey (GSS) · gun_preference.csv',
+        chartType: 'gun-preference'
       }
     ]
   };
@@ -101,6 +99,9 @@ const QuizApp = (() => {
 
   // Rank Q1 drag state
   let dragSource = null;
+
+  // Gun match init controller (prevents duplicate listeners on restart)
+  let gunMatchController = null;
 
   // — DOM References —
   const pages = {};
@@ -152,6 +153,8 @@ const QuizApp = (() => {
     bindEvents();
     initQ1ChartToggles();
     initQ2ChartToggles();
+    initGunMatch();
+    initGunMatchDashToggles();
     showPage('dashboard');
   }
 
@@ -239,7 +242,7 @@ const QuizApp = (() => {
       document.querySelectorAll('.option-btn.selected').forEach(btn => {
         btn.classList.remove('selected');
       });
-      document.querySelectorAll('.btn-submit').forEach(btn => {
+      document.querySelectorAll('.btn-submit:not(.btn-next)').forEach(btn => {
         btn.classList.remove('enabled');
       });
       // Reset sliders
@@ -251,6 +254,7 @@ const QuizApp = (() => {
       // Re-init Q1 and Q4 rank interfaces
       initRankQ1();
       initRankQ4();
+      initGunMatch();
       showPage('dashboard');
     });
 
@@ -288,8 +292,8 @@ const QuizApp = (() => {
         return;
       }
 
-      // A-D or 1-4 to select options (skip Q1 and Q4 which are drag-and-rank)
-      if (activePage.id === 'q1' || activePage.id === 'q4') return;
+      // A-D or 1-4 to select options (skip Q1 and Q4 which are drag-and-rank, skip Q5 which is drag-to-match)
+      if (activePage.id === 'q1' || activePage.id === 'q4' || activePage.id === 'q5') return;
       const keyMap = { 'a': 0, 'b': 1, 'c': 2, 'd': 3, '1': 0, '2': 1, '3': 2, '4': 3 };
       const idx = keyMap[e.key.toLowerCase()];
       if (idx !== undefined) {
@@ -713,15 +717,29 @@ const QuizApp = (() => {
         userAnswer = [...list.querySelectorAll('.rank-list-item')].map(el => el.dataset.gen);
       }
     }
+    // For gun-match, read placements from DOM
+    if (question.type === 'gun-match') {
+      const placements = {};
+      document.querySelectorAll('.gun-drop-zone').forEach(zone => {
+        zone.querySelectorAll('.gun-chip').forEach(chip => {
+          placements[chip.dataset.ideology] = zone.dataset.gun;
+        });
+      });
+      userAnswer = placements;
+      selectedAnswers[qNum] = placements;
+    }
     let isCorrect = false;
 
     if (question.type === 'slider') {
-      // For slider: correct if within 2 of the correct value
       isCorrect = Math.abs(userAnswer - question.correctValue) <= 2;
     } else if (question.type === 'rank') {
-      // Exact order match
       isCorrect = Array.isArray(userAnswer) &&
         userAnswer.every((v, i) => v === question.correctOrder[i]);
+    } else if (question.type === 'gun-match') {
+      isCorrect = userAnswer &&
+        Object.keys(question.correctPlacements).every(
+          k => userAnswer[k] === question.correctPlacements[k]
+        );
     } else {
       isCorrect = userAnswer === question.correctIndex;
     }
@@ -729,12 +747,14 @@ const QuizApp = (() => {
     // Update answer page
     if (question.type === 'rank') {
       updateRankAnswerPage(qNum, question, userAnswer, isCorrect);
+    } else if (question.type === 'gun-match') {
+      updateGunMatchAnswerPage(qNum, question, userAnswer, isCorrect);
     } else {
       updateAnswerPage(qNum, question, userAnswer, isCorrect);
     }
-    
+
     if (isCorrect) score++;
-    
+
     showPage('q' + qNum + 'a');
   }
 
@@ -816,6 +836,221 @@ const QuizApp = (() => {
     }
   }
 
+  // — Update Gun-Match Answer Page —
+  function updateGunMatchAnswerPage(qNum, question, placements, isCorrect) {
+    const answerPage = document.getElementById('q' + qNum + 'a');
+    if (!answerPage) return;
+
+    // Badge
+    const badge = answerPage.querySelector('.answer-result-badge');
+    badge.className = 'answer-result-badge ' + (isCorrect ? 'correct' : 'incorrect');
+    badge.querySelector('.badge-text').textContent = isCorrect ? 'Correct!' : 'Not quite';
+    badge.querySelector('.badge-icon').textContent = isCorrect ? '✓' : '→';
+
+    // Show placement result
+    const resultEl = document.getElementById('q5-match-result');
+    if (resultEl && placements) {
+      const correct = question.correctPlacements;
+      const rows = Object.keys(correct).map(ideology => {
+        const placed = placements[ideology] || '—';
+        const expected = correct[ideology];
+        const match = placed === expected;
+        return `<div class="gun-result-row ${match ? 'gun-match-ok' : 'gun-match-miss'}">
+          <span class="gun-result-ideology">${ideology}</span>
+          <span class="gun-result-arrow">→</span>
+          <span class="gun-result-placed">${placed}</span>
+          <span class="gun-result-check">${match ? '✓' : '✗ (' + expected + ')'}</span>
+        </div>`;
+      }).join('');
+      resultEl.innerHTML = `<div class="gun-result-grid">${rows}</div>`;
+    }
+  }
+
+  // — Gun Preference Chart Data (from gun_preference.csv) —
+  const gunPrefData = {
+    liberal:      { Pistols: 20, Shotguns: 7,  Rifles: 9  },
+    conservative: { Pistols: 25, Shotguns: 30, Rifles: 27 },
+    moderate:     { Pistols: 15, Shotguns: 22, Rifles: 17 }
+  };
+
+  const gunPrefViewConfig = {
+    liberal:      { labels: ['Pistols', 'Shotguns', 'Rifles'], vals: [20, 7, 9],   colors: ['#3b7dd8','#3b7dd8','#3b7dd8'], title: 'Liberal Gun Ownership by Type' },
+    conservative: { labels: ['Pistols', 'Shotguns', 'Rifles'], vals: [25, 30, 27], colors: ['#e05c5c','#e05c5c','#e05c5c'], title: 'Conservative Gun Ownership by Type' },
+    moderate:     { labels: ['Pistols', 'Shotguns', 'Rifles'], vals: [15, 22, 17], colors: ['#8b7fd4','#8b7fd4','#8b7fd4'], title: 'Moderate Gun Ownership by Type' },
+    pistols:      { labels: ['Liberal', 'Moderate', 'Conservative'], vals: [20, 15, 25], colors: ['#3b7dd8','#8b7fd4','#e05c5c'], title: 'Pistol Ownership by Ideology' },
+    shotguns:     { labels: ['Liberal', 'Moderate', 'Conservative'], vals: [7, 22, 30],  colors: ['#3b7dd8','#8b7fd4','#e05c5c'], title: 'Shotgun Ownership by Ideology' },
+    rifles:       { labels: ['Liberal', 'Moderate', 'Conservative'], vals: [9, 17, 27],  colors: ['#3b7dd8','#8b7fd4','#e05c5c'], title: 'Rifle Ownership by Ideology' }
+  };
+
+  function renderGunPreferenceChart(containerId, view) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+    const cfg = gunPrefViewConfig[view];
+    if (!cfg) return;
+
+    const maxVal = Math.max(...cfg.vals);
+    const chartHeight = parseInt(container.style.height) || 220;
+    // Reserve ~50px top (value label + breathing room) + ~40px bottom (category label)
+    const barAreaHeight = chartHeight - 90;
+
+    container.innerHTML = cfg.vals.map((val, i) => {
+      const barH = Math.round((val / maxVal) * barAreaHeight);
+      return `<div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:4px;">
+        <span style="font-family:var(--font-mono);font-size:0.72rem;color:var(--text-secondary);">${val}%</span>
+        <div style="width:min(64px,85%);height:${barH}px;background:${cfg.colors[i]};border-radius:var(--radius-sm) var(--radius-sm) 0 0;transition:height 0.45s var(--ease-out);box-shadow:0 0 12px ${cfg.colors[i]}44;"></div>
+        <span style="font-family:var(--font-mono);font-size:0.68rem;color:var(--text-muted);text-align:center;padding-top:4px;">${cfg.labels[i]}</span>
+      </div>`;
+    }).join('');
+
+    // Title and subtitle element + toggle attribute per container
+    const containerMeta = {
+      'gun-pref-ideology-chart':      { titleId: 'q5-ideology-chart-title',     subtitleId: 'q5-ideology-chart-subtitle', attr: 'data-gpideology-view' },
+      'gun-pref-type-chart':          { titleId: 'q5-type-chart-title',         subtitleId: 'q5-type-chart-subtitle',     attr: 'data-gptype-view' },
+      'gun-pref-chart':               { titleId: 'q5-chart-title',              subtitleId: null,                          attr: 'data-gpview' },
+      'dash-gun-pref-ideology-chart': { titleId: 'dash-gun-ideology-chart-title', subtitleId: null,                       attr: 'data-dashgpideology-view' },
+      'dash-gun-pref-type-chart':     { titleId: 'dash-gun-type-chart-title',   subtitleId: null,                          attr: 'data-dashgptype-view' }
+    };
+    const meta = containerMeta[containerId];
+    if (meta) {
+      const titleEl = document.getElementById(meta.titleId);
+      if (titleEl) titleEl.textContent = cfg.title;
+      if (meta.subtitleId) {
+        const subEl = document.getElementById(meta.subtitleId);
+        if (subEl) {
+          const isTypeView = ['pistols','shotguns','rifles'].includes(view);
+          subEl.textContent = isTypeView
+            ? `% owning ${view} by ideology`
+            : '% owning each gun type';
+        }
+      }
+      // Sync active toggle state
+      const section = container.closest('.chart-container');
+      if (section) {
+        section.querySelectorAll(`[${meta.attr}]`).forEach(btn => {
+          btn.classList.toggle('active', btn.getAttribute(meta.attr) === view);
+        });
+      }
+    }
+  }
+
+  // — Gun Match Drag-to-Column Interface —
+  function initGunMatch() {
+    // Cancel previous container listeners (prevents duplicates on restart)
+    if (gunMatchController) gunMatchController.abort();
+    gunMatchController = new AbortController();
+    const { signal } = gunMatchController;
+
+    const source = document.getElementById('gun-match-source');
+    const dropZones = document.querySelectorAll('.gun-drop-zone');
+    const submitBtn = document.getElementById('q5-submit');
+    if (!source || !dropZones.length) return;
+
+    // Reset: move any displaced chips back to source
+    document.querySelectorAll('.gun-chip').forEach(chip => source.appendChild(chip));
+    if (submitBtn) submitBtn.classList.remove('enabled');
+
+    let dragging = null;
+    let selected = null;
+
+    function updateSubmitState() {
+      if (!submitBtn) return;
+      // Enable submit only when all 3 chips are placed
+      const totalPlaced = [...dropZones].reduce((n, z) => n + z.querySelectorAll('.gun-chip').length, 0);
+      submitBtn.classList.toggle('enabled', totalPlaced === 3);
+    }
+
+    function attachChip(chip) {
+      chip.addEventListener('dragstart', (e) => {
+        dragging = chip;
+        chip.classList.add('dragging');
+        e.dataTransfer.effectAllowed = 'move';
+      });
+      chip.addEventListener('dragend', () => {
+        chip.classList.remove('dragging');
+        dragging = null;
+      });
+      chip.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (selected === chip) {
+          chip.classList.remove('selected');
+          selected = null;
+        } else {
+          if (selected) selected.classList.remove('selected');
+          chip.classList.add('selected');
+          selected = chip;
+        }
+      });
+    }
+
+    // Attach event listeners to chips now in source
+    source.querySelectorAll('.gun-chip').forEach(attachChip);
+
+    // Source drop target (return chip) — use signal to prevent listener buildup
+    source.addEventListener('dragover', e => { e.preventDefault(); source.classList.add('gun-source-hover'); }, { signal });
+    source.addEventListener('dragleave', () => source.classList.remove('gun-source-hover'), { signal });
+    source.addEventListener('drop', e => {
+      e.preventDefault();
+      source.classList.remove('gun-source-hover');
+      if (dragging) { source.appendChild(dragging); updateSubmitState(); }
+    }, { signal });
+    source.addEventListener('click', () => {
+      if (selected) {
+        source.appendChild(selected);
+        selected.classList.remove('selected');
+        selected = null;
+        updateSubmitState();
+      }
+    }, { signal });
+
+    // Drop zones
+    dropZones.forEach(zone => {
+      zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('gun-zone-hover'); }, { signal });
+      zone.addEventListener('dragleave', () => zone.classList.remove('gun-zone-hover'), { signal });
+      zone.addEventListener('drop', e => {
+        e.preventDefault();
+        zone.classList.remove('gun-zone-hover');
+        if (!dragging) return;
+        zone.appendChild(dragging);
+        updateSubmitState();
+      }, { signal });
+      zone.addEventListener('click', () => {
+        if (!selected) return;
+        zone.appendChild(selected);
+        selected.classList.remove('selected');
+        selected = null;
+        updateSubmitState();
+      }, { signal });
+    });
+  }
+
+  // — Gun Preference Chart Toggles (Q5 answer page) —
+  function initGunMatchDashToggles() {
+    // Q5 answer page — left (ideology) toggles
+    document.querySelectorAll('[data-gpideology-view]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        renderGunPreferenceChart('gun-pref-ideology-chart', btn.dataset.gpideologyView);
+      });
+    });
+    // Q5 answer page — right (gun type) toggles
+    document.querySelectorAll('[data-gptype-view]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        renderGunPreferenceChart('gun-pref-type-chart', btn.dataset.gptypeView);
+      });
+    });
+    // Dashboard card toggles — left (ideology)
+    document.querySelectorAll('[data-dashgpideology-view]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        renderGunPreferenceChart('dash-gun-pref-ideology-chart', btn.dataset.dashgpideologyView);
+      });
+    });
+    // Dashboard card toggles — right (gun type)
+    document.querySelectorAll('[data-dashgptype-view]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        renderGunPreferenceChart('dash-gun-pref-type-chart', btn.dataset.dashgptypeView);
+      });
+    });
+  }
+
   // — Build Dashboard —
   function buildDashboard() {
     // Update each dashboard card tag with user's answer context
@@ -831,6 +1066,11 @@ const QuizApp = (() => {
       } else if (question.type === 'rank') {
         isCorrect = Array.isArray(userAnswer) &&
           userAnswer.every((v, idx) => v === question.correctOrder[idx]);
+      } else if (question.type === 'gun-match') {
+        isCorrect = userAnswer &&
+          Object.keys(question.correctPlacements).every(
+            k => userAnswer[k] === question.correctPlacements[k]
+          );
       } else {
         isCorrect = userAnswer === question.correctIndex;
       }
@@ -876,6 +1116,9 @@ const QuizApp = (() => {
       if (pageId === 'q4') {
         ensureRankSubmitEnabled(4);
       }
+      if (pageId === 'q5') {
+        initGunMatch();
+      }
       // Initialize Q2 education chart whenever q2a becomes visible
       if (pageId === 'q2a') {
         requestAnimationFrame(() => {
@@ -889,6 +1132,15 @@ const QuizApp = (() => {
           renderQ2EduChart('share', 'score-edu-chart');
           renderMajorPies('score-major-pies-grid');
           renderSpaceLineChart('score-space-line-chart');
+          renderGunPreferenceChart('dash-gun-pref-ideology-chart', 'liberal');
+          renderGunPreferenceChart('dash-gun-pref-type-chart', 'pistols');
+        });
+      }
+      // Render gun preference charts on answer page
+      if (pageId === 'q5a') {
+        requestAnimationFrame(() => {
+          renderGunPreferenceChart('gun-pref-ideology-chart', 'liberal');
+          renderGunPreferenceChart('gun-pref-type-chart', 'pistols');
         });
       }
       // Render space exploration chart on answer page

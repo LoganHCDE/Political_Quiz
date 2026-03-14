@@ -102,7 +102,7 @@
       <div class="side-decoration right"></div>
       <div class="question-body rank-question-body">
         <span class="question-number">Question 01</span>
-        <h2 class="question-text">Rank these generations from <em>most</em> to <em>least</em> liberal among male respondents in the GSS</h2>
+        <h2 class="question-text">Rank these generations from <em>most</em> to <em>least</em> liberal among american men</h2>
         <p class="question-context">Liberal = slightly liberal + liberal + extremely liberal · #1 = most liberal, #4 = least</p>
 
         <div class="rank-list" id="rank-list-q1">
@@ -579,7 +579,7 @@
       <div class="side-decoration right"></div>
       <div class="question-body rank-question-body">
         <span class="question-number">Question 04</span>
-        <h2 class="question-text">Rank these college majors from <em>most</em> to <em>least</em> conservative among GSS respondents</h2>
+        <h2 class="question-text">Rank these college majors from <em>most</em> to <em>least</em> conservative among college graduates</h2>
         <p class="question-context">Conservative = slightly conservative + conservative + extremely conservative · #1 = most conservative, #4 = least</p>
 
         <div class="rank-list" id="rank-list-q4">
@@ -770,31 +770,74 @@
     <div class="question-page">
       <div class="side-decoration left"></div>
       <div class="side-decoration right"></div>
-      <div class="question-body">
+      <div class="question-body rank-question-body">
         <span class="question-number">Question 05</span>
-        <h2 class="question-text">Which party's voters are more likely to say they have "a lot" of trust in the media?</h2>
-        <p class="question-context">Think about media trust across political lines</p>
-        <div class="options-grid">
-          <button class="option-btn">
-            <span class="option-marker">A</span>
-            <span class="option-value">Democrats</span>
-          </button>
-          <button class="option-btn">
-            <span class="option-marker">B</span>
-            <span class="option-value">Republicans</span>
-          </button>
-          <button class="option-btn">
-            <span class="option-marker">C</span>
-            <span class="option-value">Independents</span>
-          </button>
-          <button class="option-btn">
-            <span class="option-marker">D</span>
-            <span class="option-value">Equal across parties</span>
-          </button>
+        <h2 class="question-text">Which type of gun is preferred by which ideology?</h2>
+        <p class="question-context">Drag each group into the column that matches their preferred gun type</p>
+
+        <div class="gun-match-wrap">
+          <!-- Draggable ideology chips -->
+          <div class="gun-match-source" id="gun-match-source">
+            <div class="gun-chip" draggable="true" data-ideology="Liberal">Liberal</div>
+            <div class="gun-chip" draggable="true" data-ideology="Conservative">Conservative</div>
+            <div class="gun-chip" draggable="true" data-ideology="Moderate">Moderate</div>
+          </div>
+
+          <!-- Drop columns -->
+          <div class="gun-columns">
+            <div class="gun-column">
+              <div class="gun-col-header">
+                <span class="gun-col-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor" aria-hidden="true">
+                    <!-- Rear Sight -->
+                    <path d="M 5 4 v -1 h 1.5 v 1 z" />
+                    <!-- Front Sight -->
+                    <path d="M 20 4 v -1 h 1 v 1 z" />
+                    <!-- Slide / Barrel -->
+                    <rect x="4" y="4" width="18" height="6" rx="1" />
+                    <!-- Hammer -->
+                    <path d="M 4 4.5 h -1.5 a 1 1 0 0 0 -1 1 v 2.5 h 2.5 z" />
+                    <!-- Grip / Handle -->
+                    <path d="M 6 10 h 6 l -2.5 9 a 1 1 0 0 1 -1 1 h -4 a 1 1 0 0 1 -1 -1 z" />
+                    <!-- Trigger Guard -->
+                    <path d="M 16 10 v 1.5 a 2.5 2.5 0 0 1 -2.5 2.5 h -2.5" fill="none" stroke="currentColor" stroke-width="2" />
+                    <!-- Trigger -->
+                    <line x1="13" y1="10" x2="11.5" y2="12.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                  </svg>
+                </span>
+                <span class="gun-col-name">Pistols</span>
+              </div>
+              <div class="gun-drop-zone" id="drop-pistols" data-gun="Pistols"></div>
+            </div>
+            <div class="gun-column">
+              <div class="gun-col-header">
+                <span class="gun-col-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M2 10.5C3 10 5 10 7 9.5L21 9.5L21 9L21.5 9L21.5 9.5L22 9.5A0.5 0.5 0 0 1 22.5 10A0.5 0.5 0 0 1 22 10.5L20 10.5L20 11L16.5 11L16.5 12L11 12L11 11.5L9.5 11.5L9.5 13C9.5 14.5 8 14.5 7 13L6.5 14.5C5.5 15 4.5 14 4 13L2 13C1.5 13 1.5 10.5 2 10.5ZM12 11.25L12 11.75L12.5 11.75L12.5 11.25ZM13.5 11.25L13.5 11.75L14 11.75L14 11.25ZM15 11.25L15 11.75L15.5 11.75L15.5 11.25ZM9 10L9 10.5L10.5 10.5L10.5 10ZM7.5 11.75L7.5 12.5C7.5 12.75 8 12.75 8.75 12.75L8.75 11.75Z"/>
+                  </svg>
+                </span>
+                <span class="gun-col-name">Shotguns</span>
+              </div>
+              <div class="gun-drop-zone" id="drop-shotguns" data-gun="Shotguns"></div>
+            </div>
+            <div class="gun-column">
+              <div class="gun-col-header">
+                <span class="gun-col-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24" height="24" aria-hidden="true">
+                    <path d="M2 9.5h4V8h1v1.5h12v-1h1v1h2v1h-8v4.5h-3v-3.5H9l-1 3H6l1-3H4l-1 2H2v-4z" />
+                  </svg>
+                </span>
+                <span class="gun-col-name">Rifles</span>
+              </div>
+              <div class="gun-drop-zone" id="drop-rifles" data-gun="Rifles"></div>
+            </div>
+          </div>
         </div>
+
+        <p class="rank-hint-text">Drag to place · or tap a chip then tap a column</p>
       </div>
       <div class="action-bar">
-        <button class="btn-submit">Submit Answer</button>
+        <button class="btn-submit" id="q5-submit">Submit Answer</button>
       </div>
     </div>
   </div>
@@ -828,76 +871,53 @@
           <span class="badge-icon">✓</span>
           <span class="badge-text">Correct</span>
         </div>
-        <h2 class="answer-heading"><span class="highlight">Democrats</span> trust media far more than other groups</h2>
+        <h2 class="answer-heading">Conservatives own <span class="highlight">more guns</span> — but liberals prefer pistols</h2>
         <p class="answer-explanation">
-          The partisan media trust gap has widened dramatically. While 54% of Democrats report trusting mass media, only 11% of Republicans say the same — the largest gap ever recorded.
+          While conservatives are more likely to own every type of gun, a higher percentage of liberals who own guns prefer pistols over shotguns or rifles. Conservatives and moderates both lean toward shotguns as their top firearm type.
         </p>
-        <div class="answer-comparison">
-          <div class="comparison-card your-answer">
-            <span class="comparison-label">Your Answer</span>
-            <span class="comparison-value">—</span>
+        <div class="answer-comparison" id="q5-match-result">
+          <!-- Filled by JS after submit -->
+        </div>
+        <div class="dual-gun-charts">
+          <!-- Left: By Ideology -->
+          <div class="chart-container">
+            <div class="chart-header">
+              <div>
+                <div class="chart-title" id="q5-ideology-chart-title">Liberal Gun Ownership</div>
+                <div class="chart-subtitle" id="q5-ideology-chart-subtitle">% owning each gun type</div>
+              </div>
+            </div>
+            <div class="gpref-toggle-section">
+              <div class="gpref-toggle-label">By Ideology</div>
+              <div class="gpref-toggle-row">
+                <button class="gpref-toggle active" data-gpideology-view="liberal" style="--toggle-color:#3b7dd8">Liberal</button>
+                <button class="gpref-toggle" data-gpideology-view="conservative" style="--toggle-color:#e05c5c">Conservative</button>
+                <button class="gpref-toggle" data-gpideology-view="moderate" style="--toggle-color:#8b7fd4">Moderate</button>
+              </div>
+            </div>
+            <div class="chart-placeholder" id="gun-pref-ideology-chart" style="height:320px;display:flex;align-items:flex-end;padding:0 var(--space-sm) var(--space-xl);gap:10px;margin-top:var(--space-md);"></div>
           </div>
-          <div class="comparison-card correct-answer">
-            <span class="comparison-label">Correct Answer</span>
-            <span class="comparison-value">Democrats</span>
+
+          <!-- Right: By Gun Type -->
+          <div class="chart-container">
+            <div class="chart-header">
+              <div>
+                <div class="chart-title" id="q5-type-chart-title">Pistol Ownership</div>
+                <div class="chart-subtitle" id="q5-type-chart-subtitle">% owning pistols by ideology</div>
+              </div>
+            </div>
+            <div class="gpref-toggle-section">
+              <div class="gpref-toggle-label">By Gun Type</div>
+              <div class="gpref-toggle-row">
+                <button class="gpref-toggle active" data-gptype-view="pistols" style="--toggle-color:#4A9F7E">Pistols</button>
+                <button class="gpref-toggle" data-gptype-view="shotguns" style="--toggle-color:#C9A84C">Shotguns</button>
+                <button class="gpref-toggle" data-gptype-view="rifles" style="--toggle-color:#A0AEC0">Rifles</button>
+              </div>
+            </div>
+            <div class="chart-placeholder" id="gun-pref-type-chart" style="height:320px;display:flex;align-items:flex-end;padding:0 var(--space-sm) var(--space-xl);gap:10px;margin-top:var(--space-md);"></div>
           </div>
         </div>
-        <div class="chart-container">
-          <div class="chart-header">
-            <div>
-              <div class="chart-title">Trust in Mass Media by Party Affiliation</div>
-              <div class="chart-subtitle">"Great deal" or "fair amount" of trust, 2000–2025</div>
-            </div>
-            <div class="chart-legend">
-              <div class="legend-item"><span class="legend-dot" style="background: #5B8DEF"></span> Democrats</div>
-              <div class="legend-item"><span class="legend-dot" style="background: var(--accent)"></span> Republicans</div>
-              <div class="legend-item"><span class="legend-dot" style="background: #A78BFA"></span> Independents</div>
-            </div>
-          </div>
-          <div class="chart-placeholder line-chart">
-            <svg class="chart-line-svg" viewBox="0 0 600 250" preserveAspectRatio="none">
-              <!-- Grid lines -->
-              <line x1="0" y1="50" x2="600" y2="50" stroke="var(--border-subtle)" stroke-width="0.5"/>
-              <line x1="0" y1="100" x2="600" y2="100" stroke="var(--border-subtle)" stroke-width="0.5"/>
-              <line x1="0" y1="150" x2="600" y2="150" stroke="var(--border-subtle)" stroke-width="0.5"/>
-              <line x1="0" y1="200" x2="600" y2="200" stroke="var(--border-subtle)" stroke-width="0.5"/>
-              
-              <!-- Democrats line (higher trust) -->
-              <polyline fill="none" stroke="#5B8DEF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
-                points="0,80 60,85 120,75 180,90 240,70 300,95 360,65 420,75 480,60 540,55 600,50"
-                style="filter: drop-shadow(0 0 6px rgba(91,141,239,0.3))"/>
-              
-              <!-- Independents line (middle) -->
-              <polyline fill="none" stroke="#A78BFA" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
-                points="0,100 60,110 120,105 180,120 240,130 300,140 360,135 420,145 480,150 540,155 600,160"/>
-              
-              <!-- Republicans line (lower trust, declining) -->
-              <polyline fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
-                points="0,110 60,120 120,130 180,140 240,155 300,160 360,175 420,185 480,195 540,200 600,210"
-                style="filter: drop-shadow(0 0 6px rgba(232,93,58,0.3))"/>
-              
-              <!-- Y-axis labels -->
-              <text x="4" y="48" fill="var(--text-muted)" font-size="10" font-family="var(--font-mono)">80%</text>
-              <text x="4" y="98" fill="var(--text-muted)" font-size="10" font-family="var(--font-mono)">60%</text>
-              <text x="4" y="148" fill="var(--text-muted)" font-size="10" font-family="var(--font-mono)">40%</text>
-              <text x="4" y="198" fill="var(--text-muted)" font-size="10" font-family="var(--font-mono)">20%</text>
-              
-              <!-- X-axis labels -->
-              <text x="0" y="240" fill="var(--text-muted)" font-size="10" font-family="var(--font-mono)">2000</text>
-              <text x="120" y="240" fill="var(--text-muted)" font-size="10" font-family="var(--font-mono)">2005</text>
-              <text x="240" y="240" fill="var(--text-muted)" font-size="10" font-family="var(--font-mono)">2010</text>
-              <text x="360" y="240" fill="var(--text-muted)" font-size="10" font-family="var(--font-mono)">2015</text>
-              <text x="480" y="240" fill="var(--text-muted)" font-size="10" font-family="var(--font-mono)">2020</text>
-              <text x="570" y="240" fill="var(--text-muted)" font-size="10" font-family="var(--font-mono)">2025</text>
-              
-              <!-- End-point labels -->
-              <text x="605" y="53" fill="#5B8DEF" font-size="11" font-weight="600" font-family="var(--font-mono)">54%</text>
-              <text x="605" y="163" fill="#A78BFA" font-size="11" font-weight="600" font-family="var(--font-mono)">27%</text>
-              <text x="605" y="213" fill="var(--accent)" font-size="11" font-weight="600" font-family="var(--font-mono)">11%</text>
-            </svg>
-          </div>
-          <div class="chart-source">Gallup Media Trust Survey, September 2024</div>
-        </div>
+        <div class="chart-source" style="text-align:center;margin-top:0.25rem">General Social Survey (GSS) · gun_preference.csv</div>
         <div class="action-bar">
           <button class="btn-submit enabled btn-next">See All the Data <span style="margin-left:4px">→</span></button>
         </div>
@@ -1065,58 +1085,54 @@
             </div>
           </div>
 
-          <!-- Card 5: Media Trust -->
+          <!-- Card 5: Gun Type Preference -->
           <div class="dash-card dash-card-wide" style="animation-delay: 0.55s">
             <div class="dash-card-header">
               <span class="dash-card-number">05</span>
               <span class="dash-card-tag" id="dash-tag-5">—</span>
             </div>
-            <h3 class="dash-card-title">Media Trust by Party</h3>
-            <p class="dash-card-insight"><strong>Democrats</strong> trust media far more than other groups — 54% vs. just 11% of Republicans, the largest gap ever recorded.</p>
+            <h3 class="dash-card-title">Gun Type Preference by Ideology</h3>
+            <p class="dash-card-insight"><strong>Conservatives own more guns</strong> of every type — yet liberals are more likely to own pistols than any other gun type, while conservatives and moderates prefer shotguns.</p>
             <div class="dash-chart-wrap">
-              <div class="chart-container">
-                <div class="chart-header">
-                  <div>
-                    <div class="chart-title">Trust in Mass Media by Party Affiliation</div>
-                    <div class="chart-subtitle">"Great deal" or "fair amount" of trust, 2000–2025</div>
+              <div class="dual-gun-charts">
+                <!-- Left: By Ideology -->
+                <div class="chart-container" style="max-width:none;margin-bottom:0;">
+                  <div class="chart-header">
+                    <div>
+                      <div class="chart-title" id="dash-gun-ideology-chart-title">Liberal Gun Ownership by Type</div>
+                      <div class="chart-subtitle">% owning each gun type</div>
+                    </div>
                   </div>
-                  <div class="chart-legend">
-                    <div class="legend-item"><span class="legend-dot" style="background: #5B8DEF"></span> Democrats</div>
-                    <div class="legend-item"><span class="legend-dot" style="background: var(--accent)"></span> Republicans</div>
-                    <div class="legend-item"><span class="legend-dot" style="background: #A78BFA"></span> Independents</div>
+                  <div class="gpref-toggle-section">
+                    <div class="gpref-toggle-label">By Ideology</div>
+                    <div class="gpref-toggle-row">
+                      <button class="gpref-toggle active" data-dashgpideology-view="liberal" style="--toggle-color:#3b7dd8">Liberal</button>
+                      <button class="gpref-toggle" data-dashgpideology-view="conservative" style="--toggle-color:#e05c5c">Conservative</button>
+                      <button class="gpref-toggle" data-dashgpideology-view="moderate" style="--toggle-color:#8b7fd4">Moderate</button>
+                    </div>
                   </div>
+                  <div class="chart-placeholder" id="dash-gun-pref-ideology-chart" style="height:280px;display:flex;align-items:flex-end;padding:0 var(--space-md) var(--space-xl);gap:12px;margin-top:var(--space-md);"></div>
                 </div>
-                <div class="chart-placeholder line-chart">
-                  <svg class="chart-line-svg" viewBox="0 0 600 250" preserveAspectRatio="none">
-                    <line x1="0" y1="50" x2="600" y2="50" stroke="var(--border-subtle)" stroke-width="0.5"/>
-                    <line x1="0" y1="100" x2="600" y2="100" stroke="var(--border-subtle)" stroke-width="0.5"/>
-                    <line x1="0" y1="150" x2="600" y2="150" stroke="var(--border-subtle)" stroke-width="0.5"/>
-                    <line x1="0" y1="200" x2="600" y2="200" stroke="var(--border-subtle)" stroke-width="0.5"/>
-                    <polyline fill="none" stroke="#5B8DEF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
-                      points="0,80 60,85 120,75 180,90 240,70 300,95 360,65 420,75 480,60 540,55 600,50"
-                      style="filter: drop-shadow(0 0 6px rgba(91,141,239,0.3))"/>
-                    <polyline fill="none" stroke="#A78BFA" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
-                      points="0,100 60,110 120,105 180,120 240,130 300,140 360,135 420,145 480,150 540,155 600,160"/>
-                    <polyline fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
-                      points="0,110 60,120 120,130 180,140 240,155 300,160 360,175 420,185 480,195 540,200 600,210"
-                      style="filter: drop-shadow(0 0 6px rgba(232,93,58,0.3))"/>
-                    <text x="4" y="48" fill="var(--text-muted)" font-size="10" font-family="var(--font-mono)">80%</text>
-                    <text x="4" y="98" fill="var(--text-muted)" font-size="10" font-family="var(--font-mono)">60%</text>
-                    <text x="4" y="148" fill="var(--text-muted)" font-size="10" font-family="var(--font-mono)">40%</text>
-                    <text x="4" y="198" fill="var(--text-muted)" font-size="10" font-family="var(--font-mono)">20%</text>
-                    <text x="0" y="240" fill="var(--text-muted)" font-size="10" font-family="var(--font-mono)">2000</text>
-                    <text x="120" y="240" fill="var(--text-muted)" font-size="10" font-family="var(--font-mono)">2005</text>
-                    <text x="240" y="240" fill="var(--text-muted)" font-size="10" font-family="var(--font-mono)">2010</text>
-                    <text x="360" y="240" fill="var(--text-muted)" font-size="10" font-family="var(--font-mono)">2015</text>
-                    <text x="480" y="240" fill="var(--text-muted)" font-size="10" font-family="var(--font-mono)">2020</text>
-                    <text x="570" y="240" fill="var(--text-muted)" font-size="10" font-family="var(--font-mono)">2025</text>
-                    <text x="605" y="53" fill="#5B8DEF" font-size="11" font-weight="600" font-family="var(--font-mono)">54%</text>
-                    <text x="605" y="163" fill="#A78BFA" font-size="11" font-weight="600" font-family="var(--font-mono)">27%</text>
-                    <text x="605" y="213" fill="var(--accent)" font-size="11" font-weight="600" font-family="var(--font-mono)">11%</text>
-                  </svg>
+                <!-- Right: By Gun Type -->
+                <div class="chart-container" style="max-width:none;margin-bottom:0;">
+                  <div class="chart-header">
+                    <div>
+                      <div class="chart-title" id="dash-gun-type-chart-title">Pistol Ownership by Ideology</div>
+                      <div class="chart-subtitle">% owning pistols by ideology</div>
+                    </div>
+                  </div>
+                  <div class="gpref-toggle-section">
+                    <div class="gpref-toggle-label">By Gun Type</div>
+                    <div class="gpref-toggle-row">
+                      <button class="gpref-toggle active" data-dashgptype-view="pistols" style="--toggle-color:#4A9F7E">Pistols</button>
+                      <button class="gpref-toggle" data-dashgptype-view="shotguns" style="--toggle-color:#C9A84C">Shotguns</button>
+                      <button class="gpref-toggle" data-dashgptype-view="rifles" style="--toggle-color:#A0AEC0">Rifles</button>
+                    </div>
+                  </div>
+                  <div class="chart-placeholder" id="dash-gun-pref-type-chart" style="height:280px;display:flex;align-items:flex-end;padding:0 var(--space-md) var(--space-xl);gap:12px;margin-top:var(--space-md);"></div>
                 </div>
-                <div class="chart-source">Gallup Media Trust Survey, September 2024</div>
               </div>
+              <div class="chart-source" style="text-align:center;margin-top:0.25rem">General Social Survey (GSS) · gun_preference.csv</div>
             </div>
           </div>
 

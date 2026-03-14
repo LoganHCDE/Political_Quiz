@@ -1049,6 +1049,12 @@ img {
   padding-bottom: var(--space-md) !important;
 }
 
+/* Q5 has taller content (gun columns + SVG headers) — align from top to prevent overflow clipping */
+#q5 .question-body {
+  justify-content: flex-start;
+  padding-top: var(--space-lg);
+}
+
 /* The full-width vertical list */
 .rank-list {
   display: flex;
@@ -2678,4 +2684,263 @@ img {
   font-size: 0.6rem;
   color: var(--text-muted);
   margin-top: 0.1rem;
+}
+
+/* ============================================================
+   GUN-MATCH DRAG INTERFACE — Question 5
+   ============================================================ */
+
+.gun-match-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  width: 100%;
+  max-width: 640px;
+  margin: var(--space-md) auto 0;
+}
+
+/* Source area – holds ideology chips before placement */
+.gun-match-source {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  justify-content: center;
+  min-height: 52px;
+  padding: var(--space-sm) var(--space-md);
+  border: 1.5px dashed var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--bg-secondary);
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.gun-match-source.gun-source-hover {
+  border-color: var(--civic-gold);
+  background: var(--civic-gold-soft);
+}
+
+/* Draggable ideology chips */
+.gun-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 18px;
+  background: var(--bg-elevated);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-full);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  cursor: grab;
+  user-select: none;
+  transition: all 0.18s var(--ease-out);
+  animation: fadeUp 0.35s var(--ease-out) both;
+}
+
+.gun-chip:hover {
+  border-color: var(--civic-blue-bright);
+  background: var(--civic-blue-soft);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(74,127,212,0.2);
+}
+
+.gun-chip.selected {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  box-shadow: 0 0 0 2px var(--accent-glow);
+  transform: scale(1.04);
+}
+
+.gun-chip.dragging {
+  opacity: 0.35;
+  cursor: grabbing;
+}
+
+/* Three gun type columns */
+.gun-columns {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
+}
+
+.gun-column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.gun-col-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: var(--space-sm) 0;
+}
+
+.gun-col-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 28px;
+}
+
+.gun-col-name {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+/* Drop zone within each column */
+.gun-drop-zone {
+  min-height: 60px;
+  border: 1.5px dashed var(--border);
+  border-radius: var(--radius-md);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: center;
+  justify-content: flex-start;
+  padding: var(--space-sm);
+  background: var(--bg-secondary);
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.gun-drop-zone.gun-zone-hover {
+  border-color: var(--civic-blue-bright);
+  background: var(--civic-blue-soft);
+  box-shadow: 0 0 0 2px rgba(74,127,212,0.15);
+}
+
+/* Gun match result rows on answer page */
+.gun-result-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  max-width: 440px;
+  margin: 0 auto;
+}
+
+.gun-result-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  animation: fadeUp 0.4s var(--ease-out) both;
+}
+
+.gun-match-ok {
+  background: var(--correct-soft);
+  border: 1px solid rgba(58,232,140,0.18);
+}
+
+.gun-match-miss {
+  background: var(--neutral-warm-soft);
+  border: 1px solid rgba(201,168,76,0.18);
+}
+
+.gun-result-ideology {
+  font-weight: 600;
+  color: var(--text-primary);
+  min-width: 90px;
+}
+
+.gun-result-arrow {
+  color: var(--text-muted);
+}
+
+.gun-result-placed {
+  flex: 1;
+  color: var(--text-secondary);
+}
+
+.gun-result-check {
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+}
+
+.gun-match-ok .gun-result-check { color: var(--correct); }
+.gun-match-miss .gun-result-check { color: var(--neutral-warm); }
+
+/* ── Gun Preference Chart Toggles ── */
+.gpref-toggle-section {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: var(--space-md);
+}
+
+.gpref-toggle-label {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.gpref-toggle-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.gpref-toggle {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-full);
+  background: transparent;
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.gpref-toggle:hover {
+  border-color: var(--text-secondary);
+  color: var(--text-primary);
+}
+
+.gpref-toggle.active {
+  background: var(--toggle-color, var(--accent));
+  border-color: transparent;
+  color: #fff;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+@media (max-width: 600px) {
+  .gun-columns {
+    gap: var(--space-sm);
+  }
+
+  .gun-chip {
+    font-size: 0.8rem;
+    padding: 6px 14px;
+  }
+
+  .gun-col-name {
+    font-size: 0.65rem;
+  }
+}
+
+/* — Dual side-by-side gun preference charts — */
+.dual-gun-charts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md);
+  width: 100%;
+}
+
+@media (max-width: 700px) {
+  .dual-gun-charts {
+    grid-template-columns: 1fr;
+  }
 }
